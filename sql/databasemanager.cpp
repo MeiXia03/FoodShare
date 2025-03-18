@@ -106,9 +106,6 @@ bool DatabaseManager::addRecipe(int userId, const QString& title, const QString&
     query.bindValue(":category", category);
     query.bindValue(":type", type);
     query.bindValue(":video_path", videoPath);
-    // 调试输出
-    qDebug() << "Executing query:" << query.executedQuery();
-    qDebug() << "Bound values:" << query.boundValues();
 
     if (!query.exec()) {
         qDebug() << "Failed to add recipe:" << query.lastError().text();

@@ -40,15 +40,10 @@ void MainWindow::setupTopNavigationBar() {
     communityButton = new QPushButton("社区功能", this);
     communityButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
     connect(communityButton, &QPushButton::clicked, this, &MainWindow::onNavigateToCommunity);
-   
-    // 初始化搜索框
-    searchBox = new QLineEdit(this);
-    searchBox->setPlaceholderText("搜索...");
-    searchBox->setStyleSheet("padding: 5px; border-radius: 5px; border: 1px solid #ccc;");
 
-    // 初始化搜索按钮
-    searchButton = new QPushButton("搜索", this);
-    searchButton->setStyleSheet("padding: 5px 10px; background-color: #ff5722; color: white; border-radius: 5px;");
+    // 社区功能按钮
+    searchButton = new QPushButton("搜索功能", this);
+    searchButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
     connect(searchButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
 
     // 搜索功能按钮
@@ -72,10 +67,7 @@ void MainWindow::setupTopNavigationBar() {
     leftLayout->addWidget(categoriesButton);
     leftLayout->addWidget(uploadButton);
     leftLayout->addWidget(communityButton);
-
-    QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchLayout->addWidget(searchBox);
-    searchLayout->addWidget(searchButton);
+    leftLayout->addWidget(searchButton);
 
     QHBoxLayout *rightLayout = new QHBoxLayout();
     rightLayout->addWidget(userAvatar);
@@ -83,7 +75,6 @@ void MainWindow::setupTopNavigationBar() {
 
     mainLayout->addLayout(leftLayout);
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
-    mainLayout->addLayout(searchLayout);
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
     mainLayout->addLayout(rightLayout);
 
