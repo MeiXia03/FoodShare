@@ -98,13 +98,18 @@ QVector<QVariantMap> DatabaseManager::getUsers() {
 // 食谱表操作
 bool DatabaseManager::addRecipe(int userId, const QString& title, const QString& content, const QString& category, const QString& type, const QString& videoPath) {
     QSqlQuery query;
-    query.prepare("INSERT INTO recipes (user_id, title, content, category, type, video_path) VALUES (:user_id, :title, :content, :category, :type, :video_path)");
+    query.prepare("INSERT INTO recipes (user_id, title, content, category, type, video_path) "
+                  "VALUES (:user_id, :title, :content, :category, :type, :video_path)");
     query.bindValue(":user_id", userId);
     query.bindValue(":title", title);
     query.bindValue(":content", content);
     query.bindValue(":category", category);
     query.bindValue(":type", type);
     query.bindValue(":video_path", videoPath);
+    // 调试输出
+    qDebug() << "Executing query:" << query.executedQuery();
+    qDebug() << "Bound values:" << query.boundValues();
+
     if (!query.exec()) {
         qDebug() << "Failed to add recipe:" << query.lastError().text();
         return false;

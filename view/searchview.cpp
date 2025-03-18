@@ -1,4 +1,5 @@
 #include "SearchView.h"
+#include "../sql/DatabaseManager.h"
 #include <QHeaderView>
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     auto placeholder = !DatabaseManager::instance().connect();
@@ -46,10 +47,9 @@ void SearchView::loadResults(const QString &keyword) {
 
     QSqlQuery query;
     QString sql = "SELECT recipe_id, title, content, video_path, likes FROM recipes "
-                  "WHERE title LIKE :keyword1 OR content LIKE :keyword2";
+              "WHERE title LIKE :keyword";
     query.prepare(sql);
-    query.bindValue(":keyword1", "%" + keyword + "%");
-    query.bindValue(":keyword2", "%" + keyword + "%");
+    query.bindValue(":keyword", "%" + keyword + "%");
 
     if (!query.exec()) {
         qDebug() << "搜索失败:" << query.lastError().text();

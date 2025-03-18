@@ -9,7 +9,7 @@
 #include "ImageCarousel.h" // 引入轮播图片类
 #include "CategoryView.h" // 引入分类功能界面类
 #include "SearchView.h" // 引入搜索功能界面类
-
+#include "UploadRecipeView.h" // 引入上传功能界面类
 
 
 class MainWindow : public QMainWindow {
@@ -38,7 +38,7 @@ private:
     QStackedWidget *mainStack; // 主界面内容切换容器
     ImageCarousel *imageCarousel; // 图片轮播组件
     CategoryView *categoryView; // 分类功能界面
-    QWidget *uploadView; // 上传功能界面
+    UploadRecipeView *uploadRecipeView; // 上传功能界面
     QWidget *communityView; // 社区功能界面
     SearchView *searchView; // 搜索功能界面
     

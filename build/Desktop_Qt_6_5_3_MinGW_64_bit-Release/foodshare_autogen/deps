@@ -1,6 +1,10 @@
 foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtCore/QDebug \
+	F:/QT/6.5.3/mingw_64/include/QtCore/QMap \
+	F:/QT/6.5.3/mingw_64/include/QtCore/QString \
 	F:/QT/6.5.3/mingw_64/include/QtCore/QTimer \
+	F:/QT/6.5.3/mingw_64/include/QtCore/QVariant \
+	F:/QT/6.5.3/mingw_64/include/QtCore/QVector \
 	F:/QT/6.5.3/mingw_64/include/QtCore/q20memory.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/q20type_traits.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qabstractitemmodel.h \
@@ -115,6 +119,7 @@ foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qutf8stringview.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qvariant.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qvarlengtharray.h \
+	F:/QT/6.5.3/mingw_64/include/QtCore/qvector.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h \
 	F:/QT/6.5.3/mingw_64/include/QtCore/qxptype_traits.h \
 	F:/QT/6.5.3/mingw_64/include/QtGui/qaction.h \
@@ -168,6 +173,7 @@ foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QPushButton \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QStackedWidget \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QTableWidget \
+	F:/QT/6.5.3/mingw_64/include/QtWidgets/QTextEdit \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -196,6 +202,7 @@ foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtableview.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtablewidget.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtabwidget.h \
+	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtextedit.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -631,4 +638,6 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/view/mainwindow.h \
 	F:/foodshare/view/searchview.cpp \
 	F:/foodshare/view/searchview.h \
+	F:/foodshare/view/uploadrecipeview.cpp \
+	F:/foodshare/view/uploadrecipeview.h \
 	F:/QT/Tools/CMake_64/bin/cmake.exe

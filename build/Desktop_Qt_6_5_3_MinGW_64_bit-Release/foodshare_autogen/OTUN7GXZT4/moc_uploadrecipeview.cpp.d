@@ -1,9 +1,8 @@
-F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7GXZT4/moc_mainwindow.cpp: F:/foodshare/view/mainwindow.h \
+F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7GXZT4/moc_uploadrecipeview.cpp: F:/foodshare/view/uploadrecipeview.h \
   F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/moc_predefs.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/QDebug \
   F:/QT/6.5.3/mingw_64/include/QtCore/QMap \
   F:/QT/6.5.3/mingw_64/include/QtCore/QString \
-  F:/QT/6.5.3/mingw_64/include/QtCore/QTimer \
   F:/QT/6.5.3/mingw_64/include/QtCore/QVariant \
   F:/QT/6.5.3/mingw_64/include/QtCore/QVector \
   F:/QT/6.5.3/mingw_64/include/QtCore/q20memory.h \
@@ -18,7 +17,6 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtCore/qatomic.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qatomic_cxx11.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qbasicatomic.h \
-  F:/QT/6.5.3/mingw_64/include/QtCore/qbasictimer.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qbindingstorage.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qbytearray.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -49,7 +47,6 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtCore/qhashfunctions.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qiodevice.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qiodevicebase.h \
-  F:/QT/6.5.3/mingw_64/include/QtCore/qitemselectionmodel.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qiterable.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qiterator.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qline.h \
@@ -105,7 +102,6 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qtextstream.h \
-  F:/QT/6.5.3/mingw_64/include/QtCore/qtimer.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qtmetamacros.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qtnoop.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -156,30 +152,21 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs_win.h \
   F:/QT/6.5.3/mingw_64/include/QtSql/QSqlDatabase \
-  F:/QT/6.5.3/mingw_64/include/QtSql/QSqlError \
   F:/QT/6.5.3/mingw_64/include/QtSql/QSqlQuery \
-  F:/QT/6.5.3/mingw_64/include/QtSql/QSqlTableModel \
   F:/QT/6.5.3/mingw_64/include/QtSql/qsqldatabase.h \
-  F:/QT/6.5.3/mingw_64/include/QtSql/qsqlerror.h \
   F:/QT/6.5.3/mingw_64/include/QtSql/qsqlquery.h \
-  F:/QT/6.5.3/mingw_64/include/QtSql/qsqlquerymodel.h \
-  F:/QT/6.5.3/mingw_64/include/QtSql/qsqltablemodel.h \
   F:/QT/6.5.3/mingw_64/include/QtSql/qtsql-config.h \
   F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlexports.h \
   F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlglobal.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QComboBox \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QLabel \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QLineEdit \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/QMainWindow \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QPushButton \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/QStackedWidget \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/QTableWidget \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QTextEdit \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractbutton.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractitemview.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractslider.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
@@ -191,17 +178,13 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayout.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayoutitem.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlineedit.h \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/qmainwindow.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qpushbutton.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qrubberband.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qsizepolicy.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qslider.h \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/qstackedwidget.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qstyle.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qstyleoption.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtabbar.h \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/qtableview.h \
-  F:/QT/6.5.3/mingw_64/include/QtWidgets/qtablewidget.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtabwidget.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtextedit.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
@@ -406,8 +389,4 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
-  F:/foodshare/sql/DatabaseManager.h \
-  F:/foodshare/view/CategoryView.h \
-  F:/foodshare/view/ImageCarousel.h \
-  F:/foodshare/view/SearchView.h \
-  F:/foodshare/view/UploadRecipeView.h
+  F:/foodshare/sql/DatabaseManager.h

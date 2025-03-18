@@ -3,3 +3,4 @@
 #include "OTUN7GXZT4/moc_imagecarousel.cpp"
 #include "OTUN7GXZT4/moc_mainwindow.cpp"
 #include "OTUN7GXZT4/moc_searchview.cpp"
+#include "OTUN7GXZT4/moc_uploadrecipeview.cpp"

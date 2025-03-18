@@ -35,6 +35,7 @@ qt_add_executable(foodshare
         view/imagecarousel.h view/imagecarousel.cpp
         view/categoryview.h view/categoryview.cpp
         view/searchview.h view/searchview.cpp
+        view/uploadrecipeview.h view/uploadrecipeview.cpp
     )
     
 

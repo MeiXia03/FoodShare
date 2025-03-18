@@ -1,11 +1,11 @@
 #include "mainwindow.h"
+#include "uploadrecipeview.h" // 添加头文件
 #include <QVBoxLayout>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setWindowTitle("美食分享系统");
     resize(800, 600);
-
     // 设置顶部导航栏
     setupTopNavigationBar();
 
@@ -108,13 +108,13 @@ void MainWindow::setupMainContent() {
     mainStack->addWidget(categoryView);
 
     // 创建上传功能界面
-    uploadView = new QWidget(this);
-    mainStack->addWidget(uploadView);
+    uploadRecipeView = new UploadRecipeView(this); // 使用 UploadRecipeView
+    mainStack->addWidget(uploadRecipeView);
 
     // 创建社区功能界面
     communityView = new QWidget(this); // 添加初始化
     mainStack->addWidget(communityView);
-    
+
     // 创建搜索功能界面
     searchView = new SearchView(this);
     mainStack->addWidget(searchView);
@@ -134,7 +134,7 @@ void MainWindow::onNavigateToCategories() {
 }
 
 void MainWindow::onNavigateToUpload() {
-    mainStack->setCurrentWidget(uploadView); // 切换到上传功能界面
+    mainStack->setCurrentWidget(uploadRecipeView); // 切换到上传功能界面
     qDebug() << "切换到上传功能界面";
 }
 
