@@ -7,7 +7,13 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Ninja",
 	"INCLUDE_DIR" : "F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/foodshare_autogen/include",
-	"INPUTS" : [ "F:/foodshare/res/image1.jpg" ],
+	"INPUTS" : 
+	[
+		"F:/foodshare/res/image3.jpg",
+		"F:/foodshare/res/image1.jpg",
+		"F:/foodshare/res/avatar.jpg",
+		"F:/foodshare/res/image2.jpg"
+	],
 	"LOCK_FILE" : "F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "res" ],

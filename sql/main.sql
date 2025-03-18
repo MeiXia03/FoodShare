@@ -17,84 +17,90 @@ PRAGMA foreign_keys = false;
 
 -- ----------------------------
 -- Table structure for blacklist
+-- 黑名单表：存储被封禁用户的信息
 -- ----------------------------
 DROP TABLE IF EXISTS "blacklist";
 CREATE TABLE "blacklist" (
-  "block_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "user_id" INTEGER NOT NULL,
-  "admin_id" INTEGER NOT NULL,
-  "reason" TEXT,
-  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "block_id" INTEGER PRIMARY KEY AUTOINCREMENT,         -- 封禁记录ID（主键，自增长）
+  "user_id" INTEGER NOT NULL,                          -- 被封锁用户ID（关联users表）
+  "admin_id" INTEGER NOT NULL,                         -- 执行封禁操作的管理员ID（关联users表）
+  "reason" TEXT,                                       -- 封禁原因
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,     -- 封禁时间（默认当前时间戳）
   FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY ("admin_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- ----------------------------
 -- Table structure for comments
+-- 评论表：存储用户对食谱的评论信息
 -- ----------------------------
 DROP TABLE IF EXISTS "comments";
 CREATE TABLE "comments" (
-  "comment_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "user_id" INTEGER NOT NULL,
-  "recipe_id" INTEGER NOT NULL,
-  "content" TEXT NOT NULL,
-  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "comment_id" INTEGER PRIMARY KEY AUTOINCREMENT,       -- 评论ID（主键，自增长）
+  "user_id" INTEGER NOT NULL,                          -- 发表评论的用户ID（关联users表）
+  "recipe_id" INTEGER NOT NULL,                        -- 被评论的食谱ID（关联recipes表）
+  "content" TEXT NOT NULL,                             -- 评论内容
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,     -- 评论时间（默认当前时间戳）
   FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY ("recipe_id") REFERENCES "recipes" ("recipe_id") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- ----------------------------
 -- Table structure for feedback
+-- 用户反馈表：存储用户提交的反馈信息
 -- ----------------------------
 DROP TABLE IF EXISTS "feedback";
 CREATE TABLE "feedback" (
-  "feedback_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "user_id" INTEGER NOT NULL,
-  "content" TEXT NOT NULL,
-  "status" TEXT DEFAULT 'pending',
-  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "feedback_id" INTEGER PRIMARY KEY AUTOINCREMENT,      -- 反馈ID（主键，自增长）
+  "user_id" INTEGER NOT NULL,                          -- 提交反馈的用户ID（关联users表）
+  "content" TEXT NOT NULL,                             -- 反馈内容
+  "status" TEXT DEFAULT 'pending',                     -- 反馈状态（默认待处理）
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,     -- 提交时间（默认当前时间戳）
   FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- ----------------------------
 -- Table structure for recipes
+-- 食谱表：存储用户发布的食谱信息
 -- ----------------------------
 DROP TABLE IF EXISTS "recipes";
 CREATE TABLE "recipes" (
-  "recipe_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "user_id" INTEGER NOT NULL,
-  "title" TEXT NOT NULL,
-  "content" TEXT NOT NULL,
-  "category" TEXT,
-  "type" TEXT,
-  "video_path" TEXT,
-  "likes" INTEGER DEFAULT 0,
-  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "recipe_id" INTEGER PRIMARY KEY AUTOINCREMENT,        -- 食谱ID（主键，自增长）
+  "user_id" INTEGER NOT NULL,                          -- 发布食谱的用户ID（关联users表）
+  "title" TEXT NOT NULL,                               -- 食谱标题
+  "content" TEXT NOT NULL,                             -- 食谱详细内容/步骤
+  "category" TEXT,                                     -- 分类（如中餐、西餐）
+  "type" TEXT,                                         -- 类型（如素食、荤食）
+  "video_path" TEXT,                                   -- 关联视频的存储路径
+  "likes" INTEGER DEFAULT 0,                           -- 点赞数（默认0）
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,     -- 创建时间（默认当前时间戳）
   FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- ----------------------------
 -- Table structure for sqlite_sequence
+-- SQLite系统表：用于自增主键的序列记录（自动生成，无需手动维护）
 -- ----------------------------
 DROP TABLE IF EXISTS "sqlite_sequence";
 CREATE TABLE "sqlite_sequence" (
-  "name",
-  "seq"
+  "name",  -- 表名
+  "seq"    -- 当前自增序列值
 );
 
 -- ----------------------------
 -- Table structure for users
+-- 用户表：存储所有用户信息，包含普通用户和管理员
 -- ----------------------------
 DROP TABLE IF EXISTS "users";
 CREATE TABLE "users" (
-  "user_id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "username" TEXT NOT NULL,
-  "password" TEXT NOT NULL,
-  "avatar_path" TEXT DEFAULT 'default_avatar.png',
-  "signature" TEXT,
-  "is_admin" BOOLEAN DEFAULT 0,
-  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE ("username" ASC)
+  "user_id" INTEGER PRIMARY KEY AUTOINCREMENT,          -- 用户ID（主键，自增长）
+  "username" TEXT NOT NULL,                            -- 用户名（唯一）
+  "password" TEXT NOT NULL,                            -- 密码（加密存储）
+  "avatar_path" TEXT DEFAULT 'default_avatar.png',     -- 头像路径（默认使用默认头像）
+  "signature" TEXT,                                    -- 个性签名
+  "is_admin" BOOLEAN DEFAULT 0,                        -- 管理员标识（0-普通用户，1-管理员）
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,     -- 注册时间（默认当前时间戳）
+  UNIQUE ("username" ASC)                              -- 用户名唯一约束
 );
 
 PRAGMA foreign_keys = true;

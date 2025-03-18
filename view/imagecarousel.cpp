@@ -8,10 +8,9 @@ ImageCarousel::ImageCarousel(QWidget *parent) : QWidget(parent) {
 
     // 添加图片到 QStackedWidget
     QStringList imagePaths = {
-        ":/resources/image1.jpg",
-        ":/resources/image2.jpg",
-        ":/resources/image3.jpg",
-        ":/resources/image4.jpg"
+        ":/image1.jpg",
+        ":/image2.jpg",
+        ":/image3.jpg"
     };
 
     for (const QString &path : imagePaths) {

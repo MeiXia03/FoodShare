@@ -33,6 +33,8 @@ qt_add_executable(foodshare
         ${PROJECT_SOURCES}
         res/res.qrc
         view/imagecarousel.h view/imagecarousel.cpp
+        view/categoryview.h view/categoryview.cpp
+        view/searchview.h view/searchview.cpp
     )
     
 

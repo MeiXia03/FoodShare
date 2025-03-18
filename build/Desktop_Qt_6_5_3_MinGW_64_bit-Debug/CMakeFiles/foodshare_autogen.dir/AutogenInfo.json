@@ -320,9 +320,27 @@
 			null
 		],
 		[
+			"F:/foodshare/view/categoryview.h",
+			"MU",
+			"OTUN7GXZT4/moc_categoryview.cpp",
+			null
+		],
+		[
+			"F:/foodshare/view/imagecarousel.h",
+			"MU",
+			"OTUN7GXZT4/moc_imagecarousel.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/mainwindow.h",
 			"MU",
 			"OTUN7GXZT4/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"F:/foodshare/view/searchview.h",
+			"MU",
+			"OTUN7GXZT4/moc_searchview.cpp",
 			null
 		]
 	],
@@ -399,8 +417,11 @@
 	"SOURCES" : 
 	[
 		[ "F:/foodshare/sql/databasemanager.cpp", "MU", null ],
+		[ "F:/foodshare/view/categoryview.cpp", "MU", null ],
+		[ "F:/foodshare/view/imagecarousel.cpp", "MU", null ],
 		[ "F:/foodshare/view/main.cpp", "MU", null ],
-		[ "F:/foodshare/view/mainwindow.cpp", "MU", null ]
+		[ "F:/foodshare/view/mainwindow.cpp", "MU", null ],
+		[ "F:/foodshare/view/searchview.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

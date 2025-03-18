@@ -65,6 +65,22 @@ build CMakeFiles/foodshare.dir/sql/databasemanager.cpp.obj: CXX_COMPILER__foodsh
   OBJECT_DIR = CMakeFiles\foodshare.dir
   OBJECT_FILE_DIR = CMakeFiles\foodshare.dir\sql
 
+build CMakeFiles/foodshare.dir/view/categoryview.cpp.obj: CXX_COMPILER__foodshare_unscanned_Debug F$:/foodshare/view/categoryview.cpp || cmake_object_order_depends_target_foodshare
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\foodshare.dir\view\categoryview.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IF:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/foodshare_autogen/include -isystem F:/QT/6.5.3/mingw_64/include/QtCore -isystem F:/QT/6.5.3/mingw_64/include -isystem F:/QT/6.5.3/mingw_64/mkspecs/win32-g++ -isystem F:/QT/6.5.3/mingw_64/include/QtWidgets -isystem F:/QT/6.5.3/mingw_64/include/QtGui -isystem F:/QT/6.5.3/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\foodshare.dir
+  OBJECT_FILE_DIR = CMakeFiles\foodshare.dir\view
+
+build CMakeFiles/foodshare.dir/view/imagecarousel.cpp.obj: CXX_COMPILER__foodshare_unscanned_Debug F$:/foodshare/view/imagecarousel.cpp || cmake_object_order_depends_target_foodshare
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\foodshare.dir\view\imagecarousel.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IF:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/foodshare_autogen/include -isystem F:/QT/6.5.3/mingw_64/include/QtCore -isystem F:/QT/6.5.3/mingw_64/include -isystem F:/QT/6.5.3/mingw_64/mkspecs/win32-g++ -isystem F:/QT/6.5.3/mingw_64/include/QtWidgets -isystem F:/QT/6.5.3/mingw_64/include/QtGui -isystem F:/QT/6.5.3/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\foodshare.dir
+  OBJECT_FILE_DIR = CMakeFiles\foodshare.dir\view
+
 build CMakeFiles/foodshare.dir/view/main.cpp.obj: CXX_COMPILER__foodshare_unscanned_Debug F$:/foodshare/view/main.cpp || cmake_object_order_depends_target_foodshare
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\foodshare.dir\view\main.cpp.obj.d
@@ -76,6 +92,14 @@ build CMakeFiles/foodshare.dir/view/main.cpp.obj: CXX_COMPILER__foodshare_unscan
 build CMakeFiles/foodshare.dir/view/mainwindow.cpp.obj: CXX_COMPILER__foodshare_unscanned_Debug F$:/foodshare/view/mainwindow.cpp || cmake_object_order_depends_target_foodshare
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\foodshare.dir\view\mainwindow.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IF:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/foodshare_autogen/include -isystem F:/QT/6.5.3/mingw_64/include/QtCore -isystem F:/QT/6.5.3/mingw_64/include -isystem F:/QT/6.5.3/mingw_64/mkspecs/win32-g++ -isystem F:/QT/6.5.3/mingw_64/include/QtWidgets -isystem F:/QT/6.5.3/mingw_64/include/QtGui -isystem F:/QT/6.5.3/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\foodshare.dir
+  OBJECT_FILE_DIR = CMakeFiles\foodshare.dir\view
+
+build CMakeFiles/foodshare.dir/view/searchview.cpp.obj: CXX_COMPILER__foodshare_unscanned_Debug F$:/foodshare/view/searchview.cpp || cmake_object_order_depends_target_foodshare
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\foodshare.dir\view\searchview.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IF:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/foodshare_autogen/include -isystem F:/QT/6.5.3/mingw_64/include/QtCore -isystem F:/QT/6.5.3/mingw_64/include -isystem F:/QT/6.5.3/mingw_64/mkspecs/win32-g++ -isystem F:/QT/6.5.3/mingw_64/include/QtWidgets -isystem F:/QT/6.5.3/mingw_64/include/QtGui -isystem F:/QT/6.5.3/mingw_64/include/QtSql
   OBJECT_DIR = CMakeFiles\foodshare.dir
@@ -97,7 +121,7 @@ build CMakeFiles/foodshare.dir/foodshare_autogen/PNK5WDWK6L/qrc_res.cpp.obj: CXX
 #############################################
 # Link the executable foodshare.exe
 
-build foodshare.exe: CXX_EXECUTABLE_LINKER__foodshare_Debug CMakeFiles/foodshare.dir/foodshare_autogen/mocs_compilation.cpp.obj CMakeFiles/foodshare.dir/sql/databasemanager.cpp.obj CMakeFiles/foodshare.dir/view/main.cpp.obj CMakeFiles/foodshare.dir/view/mainwindow.cpp.obj CMakeFiles/foodshare.dir/foodshare_autogen/PNK5WDWK6L/qrc_res.cpp.obj | F$:/QT/6.5.3/mingw_64/lib/libQt6Widgets.a F$:/QT/6.5.3/mingw_64/lib/libQt6Sql.a F$:/QT/6.5.3/mingw_64/lib/libQt6Gui.a F$:/QT/6.5.3/mingw_64/lib/libQt6Core.a F$:/QT/6.5.3/mingw_64/lib/libQt6EntryPoint.a || foodshare_autogen foodshare_autogen_timestamp_deps
+build foodshare.exe: CXX_EXECUTABLE_LINKER__foodshare_Debug CMakeFiles/foodshare.dir/foodshare_autogen/mocs_compilation.cpp.obj CMakeFiles/foodshare.dir/sql/databasemanager.cpp.obj CMakeFiles/foodshare.dir/view/categoryview.cpp.obj CMakeFiles/foodshare.dir/view/imagecarousel.cpp.obj CMakeFiles/foodshare.dir/view/main.cpp.obj CMakeFiles/foodshare.dir/view/mainwindow.cpp.obj CMakeFiles/foodshare.dir/view/searchview.cpp.obj CMakeFiles/foodshare.dir/foodshare_autogen/PNK5WDWK6L/qrc_res.cpp.obj | F$:/QT/6.5.3/mingw_64/lib/libQt6Widgets.a F$:/QT/6.5.3/mingw_64/lib/libQt6Sql.a F$:/QT/6.5.3/mingw_64/lib/libQt6Gui.a F$:/QT/6.5.3/mingw_64/lib/libQt6Core.a F$:/QT/6.5.3/mingw_64/lib/libQt6EntryPoint.a || foodshare_autogen foodshare_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = F:/QT/6.5.3/mingw_64/lib/libQt6Widgets.a  F:/QT/6.5.3/mingw_64/lib/libQt6Sql.a  F:/QT/6.5.3/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  F:/QT/6.5.3/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  F:/QT/6.5.3/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -201,7 +225,7 @@ build foodshare_autogen/timestamp foodshare_autogen/mocs_compilation.cpp | ${cma
 #############################################
 # Custom command for foodshare_autogen\PNK5WDWK6L\qrc_res.cpp
 
-build foodshare_autogen/PNK5WDWK6L/qrc_res.cpp | ${cmake_ninja_workdir}foodshare_autogen/PNK5WDWK6L/qrc_res.cpp: CUSTOM_COMMAND F$:/foodshare/res/res.qrc CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json F$:/foodshare/res/image1.jpg F$:/QT/6.5.3/mingw_64/./bin/rcc.exe F$:/QT/6.5.3/mingw_64/./bin/rcc.exe || foodshare_autogen foodshare_autogen_timestamp_deps
+build foodshare_autogen/PNK5WDWK6L/qrc_res.cpp | ${cmake_ninja_workdir}foodshare_autogen/PNK5WDWK6L/qrc_res.cpp: CUSTOM_COMMAND F$:/foodshare/res/res.qrc CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json F$:/foodshare/res/image3.jpg F$:/foodshare/res/image1.jpg F$:/foodshare/res/avatar.jpg F$:/foodshare/res/image2.jpg F$:/QT/6.5.3/mingw_64/./bin/rcc.exe F$:/QT/6.5.3/mingw_64/./bin/rcc.exe || foodshare_autogen foodshare_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D F:\foodshare\build\Desktop_Qt_6_5_3_MinGW_64_bit-Debug && F:\QT\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json Debug"
   DESC = Automatic RCC for res/res.qrc
   restat = 1

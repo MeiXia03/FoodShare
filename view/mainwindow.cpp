@@ -1,6 +1,5 @@
 #include "mainwindow.h"
-#include <QPixmap>
-#include <QSpacerItem>
+#include <QVBoxLayout>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
@@ -41,20 +40,25 @@ void MainWindow::setupTopNavigationBar() {
     communityButton = new QPushButton("社区功能", this);
     communityButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
     connect(communityButton, &QPushButton::clicked, this, &MainWindow::onNavigateToCommunity);
-
-    // 搜索框
+   
+    // 初始化搜索框
     searchBox = new QLineEdit(this);
-    searchBox->setPlaceholderText("搜索食谱或技巧...");
-    searchBox->setStyleSheet("padding: 5px; border-radius: 5px; border: none;");
+    searchBox->setPlaceholderText("搜索...");
+    searchBox->setStyleSheet("padding: 5px; border-radius: 5px; border: 1px solid #ccc;");
 
-    // 搜索按钮
+    // 初始化搜索按钮
     searchButton = new QPushButton("搜索", this);
-    searchButton->setStyleSheet("color: #ff5722; background-color: white; font-size: 14px; padding: 5px 10px; border-radius: 5px;");
-    connect(searchButton, &QPushButton::clicked, this, &MainWindow::onSearchClicked);
+    searchButton->setStyleSheet("padding: 5px 10px; background-color: #ff5722; color: white; border-radius: 5px;");
+    connect(searchButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
+
+    // 搜索功能按钮
+    QPushButton *searchNavButton = new QPushButton("搜索功能", this);
+    searchNavButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
+    connect(searchNavButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
 
     // 用户头像
     userAvatar = new QLabel(this);
-    QPixmap avatarPixmap(":/resources/avatar.png"); // 替换为实际头像路径
+    QPixmap avatarPixmap(":/avatar.jpg");
     userAvatar->setPixmap(avatarPixmap.scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     userAvatar->setStyleSheet("border: 2px solid white; border-radius: 20px;");
 
@@ -62,88 +66,84 @@ void MainWindow::setupTopNavigationBar() {
     userInfoLabel = new QLabel("个人信息", this);
     userInfoLabel->setStyleSheet("color: white; font-size: 16px;");
 
-    // 添加左侧导航按钮
+    // 布局
     QHBoxLayout *leftLayout = new QHBoxLayout();
     leftLayout->addWidget(homeButton);
     leftLayout->addWidget(categoriesButton);
     leftLayout->addWidget(uploadButton);
     leftLayout->addWidget(communityButton);
 
-    // 添加搜索框
     QHBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->addWidget(searchBox);
     searchLayout->addWidget(searchButton);
 
-    // 添加右侧用户信息
     QHBoxLayout *rightLayout = new QHBoxLayout();
     rightLayout->addWidget(userAvatar);
     rightLayout->addWidget(userInfoLabel);
 
-    // 添加到主布局
     mainLayout->addLayout(leftLayout);
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
     mainLayout->addLayout(searchLayout);
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
     mainLayout->addLayout(rightLayout);
 
-    // 设置导航栏为窗口顶部
-    QWidget *centralWidget = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(centralWidget);
+    QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(topNavBar);
+
+    QWidget *centralWidget = new QWidget(this);
+    centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
 }
 
 void MainWindow::setupMainContent() {
-    // 创建图片轮播容器
-    imageStack = new QStackedWidget(this);
+    // 创建主内容切换容器
+    mainStack = new QStackedWidget(this);
 
-    // 添加图片到 QStackedWidget
-    QStringList imagePaths = {
-        ":/image1.jpg",
-        ":/image2.jpg",
-        ":/image3.jpg",
-        ":/image4.jpg"
-    };
+    // 创建图片轮播组件
+    imageCarousel = new ImageCarousel(this);
+    mainStack->addWidget(imageCarousel);
 
-    for (const QString &path : imagePaths) {
-        QLabel *imageLabel = new QLabel(this);
-        QPixmap pixmap(path);
-        imageLabel->setPixmap(pixmap.scaled(800, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        imageLabel->setAlignment(Qt::AlignCenter);
-        imageStack->addWidget(imageLabel);
-    }
+    // 创建分类功能界面
+    categoryView = new CategoryView(this);
+    mainStack->addWidget(categoryView);
 
-    // 创建定时器切换图片
-    imageSwitchTimer = new QTimer(this);
-    connect(imageSwitchTimer, &QTimer::timeout, this, &MainWindow::switchImage);
-    imageSwitchTimer->start(3000); // 每 3 秒切换一次图片
+    // 创建上传功能界面
+    uploadView = new QWidget(this);
+    mainStack->addWidget(uploadView);
 
-    // 将图片轮播添加到主布局
-    centralWidget()->layout()->addWidget(imageStack);
-}
+    // 创建社区功能界面
+    communityView = new QWidget(this); // 添加初始化
+    mainStack->addWidget(communityView);
+    
+    // 创建搜索功能界面
+    searchView = new SearchView(this);
+    mainStack->addWidget(searchView);
 
-void MainWindow::switchImage() {
-    int currentIndex = imageStack->currentIndex();
-    int nextIndex = (currentIndex + 1) % imageStack->count();
-    imageStack->setCurrentIndex(nextIndex);
+    // 将主内容切换容器添加到布局
+    centralWidget()->layout()->addWidget(mainStack);
 }
 
 void MainWindow::onNavigateToHome() {
-    qDebug() << "导航到主界面";
+    mainStack->setCurrentWidget(imageCarousel); // 切换到图片轮播界面
+    qDebug() << "切换到主界面";
 }
 
 void MainWindow::onNavigateToCategories() {
-    qDebug() << "导航到分类功能";
+    mainStack->setCurrentWidget(categoryView); // 切换到分类功能界面
+    qDebug() << "切换到分类功能界面";
 }
 
 void MainWindow::onNavigateToUpload() {
-    qDebug() << "导航到上传功能";
+    mainStack->setCurrentWidget(uploadView); // 切换到上传功能界面
+    qDebug() << "切换到上传功能界面";
 }
 
 void MainWindow::onNavigateToCommunity() {
-    qDebug() << "导航到社区功能";
+    mainStack->setCurrentWidget(communityView); // 切换到社区功能界面
+    qDebug() << "切换到社区功能界面";
 }
 
-void MainWindow::onSearchClicked() {
-    qDebug() << "搜索内容:" << searchBox->text();
+void MainWindow::onNavigateToSearch() {
+    mainStack->setCurrentWidget(searchView); // 切换到搜索功能界面
+    qDebug() << "切换到搜索功能界面";
 }
