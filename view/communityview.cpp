@@ -1,6 +1,6 @@
 #include "communityview.h"
 #include <QMessageBox>
-#include <QHeaderView>
+#include <QSqlQuery>
 #include <QSqlError>
 
 CommunityView::CommunityView(int recipeId, int userId, QWidget *parent)
@@ -8,35 +8,27 @@ CommunityView::CommunityView(int recipeId, int userId, QWidget *parent)
     setupUI();
     loadRecipeImageAndTitle(); // 加载食谱图片和标题
     loadComments();           // 加载评论
-    loadFeedback();           // 加载用户反馈
 }
 
 void CommunityView::setupUI() {
     // 创建食谱标题显示区域
     recipeTitleLabel = new QLabel(this);
     recipeTitleLabel->setAlignment(Qt::AlignCenter);
-    recipeTitleLabel->setStyleSheet("font-size: 20px; font-weight: bold; margin-bottom: 10px;");
+    recipeTitleLabel->setStyleSheet("font-size: 24px; font-weight: bold; margin-bottom: 15px;");
 
     // 创建食谱图片显示区域
     recipeImageLabel = new QLabel(this);
     recipeImageLabel->setAlignment(Qt::AlignCenter);
-    recipeImageLabel->setStyleSheet("border: 1px solid #ccc; margin-bottom: 10px;");
+    recipeImageLabel->setStyleSheet("border: 2px solid #ccc; margin-bottom: 15px;");
 
     // 创建评论列表
     commentsList = new QListWidget(this);
-    commentsList->setStyleSheet("border: 1px solid #ccc; padding: 5px; margin-bottom: 10px;");
-
-    // 创建用户反馈表
-    feedbackTable = new QTableWidget(this);
-    feedbackTable->setColumnCount(3);
-    feedbackTable->setHorizontalHeaderLabels({"用户ID", "反馈内容", "状态"});
-    feedbackTable->horizontalHeader()->setStretchLastSection(true);
-    feedbackTable->setStyleSheet("border: 1px solid #ccc; padding: 5px; margin-bottom: 10px;");
+    commentsList->setStyleSheet("border: 1px solid #ccc; padding: 10px; margin-bottom: 15px; font-size: 14px;");
 
     // 创建评论输入框
     commentInput = new QLineEdit(this);
     commentInput->setPlaceholderText("请输入评论...");
-    commentInput->setStyleSheet("padding: 10px; border: 1px solid #ccc; border-radius: 5px;");
+    commentInput->setStyleSheet("padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 10px;");
 
     // 创建发布评论按钮
     postCommentButton = new QPushButton("发布评论", this);
@@ -49,8 +41,6 @@ void CommunityView::setupUI() {
     layout->addWidget(recipeImageLabel);
     layout->addWidget(new QLabel("评论列表:", this));
     layout->addWidget(commentsList);
-    layout->addWidget(new QLabel("用户反馈:", this));
-    layout->addWidget(feedbackTable);
     layout->addWidget(commentInput);
     layout->addWidget(postCommentButton);
 
@@ -72,7 +62,7 @@ void CommunityView::loadRecipeImageAndTitle() {
     QString title = query.value("title").toString();
     recipeTitleLabel->setText(title);
 
-    QString imagePath = QString(":/res/recipe_%1.jpg").arg(currentRecipeId);
+    QString imagePath = QString(":/recipe_%1.jpg").arg(currentRecipeId);
     QPixmap pixmap(imagePath);
 
     if (pixmap.isNull()) {
@@ -84,36 +74,24 @@ void CommunityView::loadRecipeImageAndTitle() {
 
 void CommunityView::loadComments() {
     commentsList->clear();
-    QVector<QVariantMap> comments = DatabaseManager::instance().getComments(currentRecipeId);
-
-    for (const auto &comment : comments) {
-        QString content = comment["content"].toString();
-        QString createdAt = comment["created_at"].toString();
-        commentsList->addItem(QString("[%1] %2").arg(createdAt, content));
-    }
-}
-
-void CommunityView::loadFeedback() {
-    feedbackTable->setRowCount(0);
-
     QSqlQuery query;
-    query.prepare("SELECT user_id, content, status FROM feedback WHERE user_id = :user_id");
-    query.bindValue(":user_id", loggedInUserId);
+    query.prepare("SELECT users.username, comments.content, comments.created_at "
+                  "FROM comments "
+                  "JOIN users ON comments.user_id = users.user_id "
+                  "WHERE comments.recipe_id = :recipe_id "
+                  "ORDER BY comments.created_at DESC");
+    query.bindValue(":recipe_id", currentRecipeId);
 
     if (!query.exec()) {
-        qDebug() << "加载反馈失败:" << query.lastError().text();
+        qDebug() << "加载评论失败:" << query.lastError().text();
         return;
     }
 
-    int row = 0;
     while (query.next()) {
-        feedbackTable->insertRow(row);
-
-        feedbackTable->setItem(row, 0, new QTableWidgetItem(query.value("user_id").toString()));
-        feedbackTable->setItem(row, 1, new QTableWidgetItem(query.value("content").toString()));
-        feedbackTable->setItem(row, 2, new QTableWidgetItem(query.value("status").toString()));
-
-        row++;
+        QString username = query.value("username").toString();
+        QString content = query.value("content").toString();
+        QString createdAt = query.value("created_at").toString();
+        commentsList->addItem(QString("[%1] %2: %3").arg(createdAt, username, content));
     }
 }
 
@@ -125,11 +103,18 @@ void CommunityView::onPostCommentClicked() {
         return;
     }
 
-    if (DatabaseManager::instance().addComment(loggedInUserId, currentRecipeId, content)) {
-        QMessageBox::information(this, "成功", "评论发布成功！");
-        commentInput->clear();
-        loadComments(); // 重新加载评论
-    } else {
+    QSqlQuery query;
+    query.prepare("INSERT INTO comments (user_id, recipe_id, content) VALUES (:user_id, :recipe_id, :content)");
+    query.bindValue(":user_id", loggedInUserId);
+    query.bindValue(":recipe_id", currentRecipeId);
+    query.bindValue(":content", content);
+
+    if (!query.exec()) {
         QMessageBox::critical(this, "错误", "评论发布失败，请稍后重试！");
+        return;
     }
+
+    QMessageBox::information(this, "成功", "评论发布成功！");
+    commentInput->clear();
+    loadComments(); // 重新加载评论
 }

@@ -1,9 +1,9 @@
 #include "SearchView.h"
 #include "../sql/DatabaseManager.h"
 #include <QHeaderView>
+
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
-    auto placeholder = !DatabaseManager::instance().connect();
-    if (placeholder) {
+    if (!DatabaseManager::instance().connect()) {
         qDebug() << "数据库连接失败";
         return;
     }
@@ -23,8 +23,8 @@ void SearchView::setupUI() {
 
     // 创建结果表格
     resultTable = new QTableWidget(this);
-    resultTable->setColumnCount(5); // 显示标题、内容、视频路径、点赞数、操作
-    resultTable->setHorizontalHeaderLabels({"标题", "内容", "视频路径", "点赞数", "操作"});
+    resultTable->setColumnCount(6); // 增加一列用于评论按钮
+    resultTable->setHorizontalHeaderLabels({"标题", "内容", "视频路径", "点赞数", "点赞", "评论"});
     resultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     resultTable->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
     resultTable->setSelectionBehavior(QAbstractItemView::SelectRows); // 整行选择
@@ -42,31 +42,27 @@ void SearchView::onSearchClicked() {
     loadResults(keyword);
 }
 
-void SearchView::onResultDoubleClicked(int row, int column) {
-    Q_UNUSED(column);
-
-    // 1. 检查行数据有效性
+void SearchView::onCommentButtonClicked(int row) {
+    // 获取当前行的 recipe_id
     QTableWidgetItem *item = resultTable->item(row, 0);
     if (!item) {
         qWarning() << "Invalid row or column";
         return;
     }
 
-    // 2. 获取 recipeId 和 userId
     int recipeId = item->data(Qt::UserRole).toInt();
-    int userId = 1;
+    int userId = 1; // 假设当前登录用户ID为1
 
-    // 3. 创建或激活 CommunityView 窗口
+    // 创建或激活 CommunityView 窗口
     if (!communityView) {
-        // 将 SearchView 设为父对象，确保生命周期可控
         communityView = new CommunityView(recipeId, userId, this);
 
-        // 关键设置：强制作为独立窗口显示（覆盖父窗口位置）
+        // 设置为独立窗口
         communityView->setWindowFlags(Qt::Window);
         communityView->setWindowModality(Qt::NonModal);
         communityView->setAttribute(Qt::WA_DeleteOnClose);
 
-        // 窗口属性
+        // 设置窗口属性
         communityView->setWindowTitle(QString("社区评论 - 食谱 ID: %1").arg(recipeId));
         communityView->resize(800, 600);
 
@@ -76,7 +72,7 @@ void SearchView::onResultDoubleClicked(int row, int column) {
         });
     }
 
-    // 4. 确保窗口前置（兼容多平台）
+    // 显示窗口
     communityView->show();
     communityView->raise();
     communityView->activateWindow();
@@ -122,6 +118,16 @@ void SearchView::loadResults(const QString &keyword) {
         // 连接点赞按钮的点击事件
         connect(likeButton, &QPushButton::clicked, [this, row]() {
             onLikeButtonClicked(row);
+        });
+
+        // 创建评论按钮
+        QPushButton *commentButton = new QPushButton("评论", this);
+        commentButton->setStyleSheet("padding: 5px 10px; background-color: #2196F3; color: white; border-radius: 5px;");
+        resultTable->setCellWidget(row, 5, commentButton);
+
+        // 连接评论按钮的点击事件
+        connect(commentButton, &QPushButton::clicked, [this, row]() {
+            onCommentButtonClicked(row);
         });
 
         row++;

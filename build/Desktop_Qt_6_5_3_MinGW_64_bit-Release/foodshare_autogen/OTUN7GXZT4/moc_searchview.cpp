@@ -1,12 +1,12 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'searchview.h'
+** Meta object code from reading C++ file 'SearchView.h'
 **
 ** Created by: The Qt Meta Object Compiler version 68 (Qt 6.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../view/searchview.h"
+#include "../../../../view/SearchView.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
@@ -20,7 +20,7 @@ QT_BEGIN_MOC_NAMESPACE
 #include <memory>
 
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'searchview.h' doesn't include <QObject>."
+#error "The header file 'SearchView.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
 #error "This file was generated using the moc from 6.5.3. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -44,19 +44,17 @@ static constexpr auto qt_meta_stringdata_CLASSSearchViewENDCLASS = QtMocHelpers:
     "",
     "onLikeButtonClicked",
     "row",
-    "onResultDoubleClicked",
-    "column"
+    "onCommentButtonClicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSSearchViewENDCLASS_t {
-    uint offsetsAndSizes[14];
+    uint offsetsAndSizes[12];
     char stringdata0[11];
     char stringdata1[16];
     char stringdata2[1];
     char stringdata3[20];
     char stringdata4[4];
-    char stringdata5[22];
-    char stringdata6[7];
+    char stringdata5[23];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSSearchViewENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -67,16 +65,14 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSSearchViewENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(27, 0),  // ""
         QT_MOC_LITERAL(28, 19),  // "onLikeButtonClicked"
         QT_MOC_LITERAL(48, 3),  // "row"
-        QT_MOC_LITERAL(52, 21),  // "onResultDoubleClicked"
-        QT_MOC_LITERAL(74, 6)   // "column"
+        QT_MOC_LITERAL(52, 22)   // "onCommentButtonClicked"
     },
     "SearchView",
     "onSearchClicked",
     "",
     "onLikeButtonClicked",
     "row",
-    "onResultDoubleClicked",
-    "column"
+    "onCommentButtonClicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -98,12 +94,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSearchViewENDCLASS[] = {
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        1,    0,   32,    2, 0x08,    1 /* Private */,
        3,    1,   33,    2, 0x08,    2 /* Private */,
-       5,    2,   36,    2, 0x08,    4 /* Private */,
+       5,    1,   36,    2, 0x08,    4 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    6,
+    QMetaType::Void, QMetaType::Int,    4,
 
        0        // eod
 };
@@ -122,9 +118,8 @@ Q_CONSTINIT const QMetaObject SearchView::staticMetaObject = { {
         // method 'onLikeButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'onResultDoubleClicked'
+        // method 'onCommentButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
@@ -138,7 +133,7 @@ void SearchView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->onSearchClicked(); break;
         case 1: _t->onLikeButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 2: _t->onResultDoubleClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 2: _t->onCommentButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }

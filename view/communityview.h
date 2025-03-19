@@ -7,7 +7,6 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QListWidget>
-#include <QTableWidget>
 #include <QPixmap>
 #include "../sql/DatabaseManager.h"
 
@@ -26,14 +25,12 @@ private:
     QLabel *recipeImageLabel; // 显示食谱图片
     QLabel *recipeTitleLabel; // 显示食谱标题
     QListWidget *commentsList; // 显示评论列表
-    QTableWidget *feedbackTable; // 显示用户反馈表
     QLineEdit *commentInput; // 评论输入框
     QPushButton *postCommentButton; // 发布评论按钮
 
     void setupUI(); // 初始化界面
     void loadRecipeImageAndTitle(); // 加载食谱图片和标题
     void loadComments(); // 加载评论
-    void loadFeedback(); // 加载用户反馈
 };
 
 #endif // COMMUNITYVIEW_H

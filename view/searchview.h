@@ -21,7 +21,7 @@ public:
 private slots:
     void onSearchClicked(); // 搜索按钮点击事件
     void onLikeButtonClicked(int row); // 点赞按钮点击事件
-    void onResultDoubleClicked(int row, int column); // 双击结果表格事件
+    void onCommentButtonClicked(int row); // 评论按钮点击事件
 
 private:
     QLineEdit *searchBox; // 搜索框

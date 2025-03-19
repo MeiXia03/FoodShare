@@ -257,7 +257,7 @@ build foodshare_autogen/timestamp foodshare_autogen/mocs_compilation.cpp | ${cma
 #############################################
 # Custom command for foodshare_autogen\PNK5WDWK6L\qrc_res.cpp
 
-build foodshare_autogen/PNK5WDWK6L/qrc_res.cpp | ${cmake_ninja_workdir}foodshare_autogen/PNK5WDWK6L/qrc_res.cpp: CUSTOM_COMMAND F$:/foodshare/res/res.qrc CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json F$:/foodshare/res/image3.jpg F$:/foodshare/res/image1.jpg F$:/foodshare/res/recipe_2.jpg F$:/foodshare/res/recipe_1.jpg F$:/foodshare/res/avatar.jpg F$:/foodshare/res/image2.jpg F$:/QT/6.5.3/mingw_64/./bin/rcc.exe F$:/QT/6.5.3/mingw_64/./bin/rcc.exe || foodshare_autogen foodshare_autogen_timestamp_deps
+build foodshare_autogen/PNK5WDWK6L/qrc_res.cpp | ${cmake_ninja_workdir}foodshare_autogen/PNK5WDWK6L/qrc_res.cpp: CUSTOM_COMMAND F$:/foodshare/res/res.qrc CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json F$:/foodshare/res/image3.jpg F$:/foodshare/res/image1.jpg F$:/foodshare/res/recipe_2.jpg F$:/foodshare/res/recipe_1.jpg F$:/foodshare/res/avatar.jpg F$:/foodshare/res/image2.jpg F$:/foodshare/res/loadFeedback.jpg F$:/QT/6.5.3/mingw_64/./bin/rcc.exe F$:/QT/6.5.3/mingw_64/./bin/rcc.exe || foodshare_autogen foodshare_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D F:\foodshare\build\Desktop_Qt_6_5_3_MinGW_64_bit-Release && F:\QT\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Info.json Release"
   DESC = Automatic RCC for res/res.qrc
   restat = 1

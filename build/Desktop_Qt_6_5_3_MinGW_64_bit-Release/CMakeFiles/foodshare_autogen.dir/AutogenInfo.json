@@ -320,6 +320,12 @@
 			null
 		],
 		[
+			"F:/foodshare/view/SearchView.h",
+			"MU",
+			"OTUN7GXZT4/moc_SearchView.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/backendview.h",
 			"MU",
 			"OTUN7GXZT4/moc_backendview.cpp",
@@ -353,12 +359,6 @@
 			"F:/foodshare/view/mainwindow.h",
 			"MU",
 			"OTUN7GXZT4/moc_mainwindow.cpp",
-			null
-		],
-		[
-			"F:/foodshare/view/searchview.h",
-			"MU",
-			"OTUN7GXZT4/moc_searchview.cpp",
 			null
 		],
 		[
