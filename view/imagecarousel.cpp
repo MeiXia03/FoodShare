@@ -11,20 +11,13 @@ ImageCarousel::ImageCarousel(QWidget *parent) : QWidget(parent) {
     connect(imageSwitchTimer, &QTimer::timeout, this, &ImageCarousel::switchImage);
     imageSwitchTimer->start(3000); // 每 3 秒切换一次图片
 
-    // 创建视频播放器组件
-    mediaPlayer = new QMediaPlayer(this);
-    videoWidget = new QVideoWidget(this);
-    mediaPlayer->setVideoOutput(videoWidget);
-
     // 设置布局
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(imageStack); // 图片轮播区
-    layout->addWidget(videoWidget); // 视频播放器区
     setLayout(layout);
 
     // 加载数据
     loadTopLikedImages();
-    loadVideo();
 }
 
 void ImageCarousel::switchImage() {
@@ -58,21 +51,5 @@ void ImageCarousel::loadTopLikedImages() {
         imageLabel->setPixmap(pixmap.scaled(800, 400, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         imageLabel->setAlignment(Qt::AlignCenter);
         imageStack->addWidget(imageLabel);
-    }
-}
-
-void ImageCarousel::loadVideo() {
-    QSqlQuery query;
-    query.prepare("SELECT video_path FROM recipes WHERE video_path IS NOT NULL LIMIT 1");
-
-    if (!query.exec()) {
-        qDebug() << "加载视频失败:" << query.lastError().text();
-        return;
-    }
-
-    if (query.next()) {
-        QString videoPath = query.value("video_path").toString();
-        mediaPlayer->setSource(QUrl::fromLocalFile(videoPath));
-        mediaPlayer->play();
     }
 }

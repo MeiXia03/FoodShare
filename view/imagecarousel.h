@@ -22,11 +22,8 @@ private slots:
 private:
     QStackedWidget *imageStack; // 图片轮播容器
     QTimer *imageSwitchTimer;   // 定时器，用于切换图片
-    QMediaPlayer *mediaPlayer;  // 视频播放器
-    QVideoWidget *videoWidget;  // 视频显示组件
 
     void loadTopLikedImages();  // 加载点赞数最多的图片
-    void loadVideo();           // 加载视频
 };
 
 #endif // IMAGECAROUSEL_H
