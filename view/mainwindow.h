@@ -36,10 +36,7 @@ private:
     QPushButton *chatRoomButton; // 聊天室按钮
 
     QStackedWidget *mainStack; // 主界面内容切换容器
-    QWidget *contentRecommendationWidget; // 内容推荐区
-    QWidget *userRecommendationWidget;    // 用户推荐区
     ImageCarousel *imageCarousel; // 图片轮播组件
-    QStackedWidget *userAvatarCarousel;   // 用户头像轮播组件
     CategoryView *categoryView;
     UploadRecipeView *uploadRecipeView;
     SearchView *searchView;
@@ -50,7 +47,6 @@ private:
 
     void setupTopNavigationBar(); // 设置顶部导航栏
     void setupMainContent(); // 设置主界面内容
-    void setupRecommendationAreas();      // 设置推荐区域
 };
 
 #endif // MAINWINDOW_H

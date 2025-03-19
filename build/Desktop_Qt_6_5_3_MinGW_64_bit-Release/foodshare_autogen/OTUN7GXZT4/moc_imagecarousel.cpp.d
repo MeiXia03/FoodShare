@@ -53,6 +53,7 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtCore/qmargins.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qmath.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qmetacontainer.h \
+  F:/QT/6.5.3/mingw_64/include/QtCore/qmetaobject.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qmetatype.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qminmax.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qnamespace.h \
@@ -140,6 +141,25 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtGui/qtransform.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/QMediaPlayer \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qaudio.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimediaWidgets/QVideoWidget \
+  F:/QT/6.5.3/mingw_64/include/QtMultimediaWidgets/qtmultimediawidgetsexports.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimediaWidgets/qtmultimediawidgetsglobal.h \
+  F:/QT/6.5.3/mingw_64/include/QtMultimediaWidgets/qvideowidget.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/QSqlError \
+  F:/QT/6.5.3/mingw_64/include/QtSql/QSqlQuery \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qsqldatabase.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qsqlerror.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qsqlquery.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qtsql-config.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlexports.h \
+  F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlglobal.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QLabel \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QStackedWidget \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
