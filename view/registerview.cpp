@@ -6,8 +6,7 @@ RegisterView::RegisterView(QWidget *parent) : QWidget(parent) {
     setWindowTitle("用户注册"); // 设置窗口标题
     resize(400, 300); // 设置窗口默认大小
 
-    // 设置为独立顶层窗口
-    setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
+    setWindowModality(Qt::ApplicationModal); // 设置模态，阻止与其他窗口交互
 }
 
 void RegisterView::setupUI() {

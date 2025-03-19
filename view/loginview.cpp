@@ -94,7 +94,7 @@ void LoginView::onLoginClicked() {
 }
 
 void LoginView::onRegisterClicked() {
-    // 打开独立的注册窗口
+    // 打开模态的注册窗口
     RegisterView *registerView = new RegisterView();
     registerView->setAttribute(Qt::WA_DeleteOnClose); // 窗口关闭时自动释放内存
     registerView->show();

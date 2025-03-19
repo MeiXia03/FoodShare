@@ -19,37 +19,45 @@ void MainWindow::setupTopNavigationBar() {
     QHBoxLayout *mainLayout = new QHBoxLayout(topNavBar);
     mainLayout->setContentsMargins(10, 10, 10, 10);
     mainLayout->setSpacing(20);
-    topNavBar->setStyleSheet("background-color: #ff5722;"); // 设置橙色背景
+    topNavBar->setStyleSheet("background-color: #ff5722; padding: 10px;"); // 设置橙色背景并增加内边距
 
     // 主界面按钮
     homeButton = new QPushButton("主界面", this);
-    homeButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
+    homeButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #4CAF50; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
     connect(homeButton, &QPushButton::clicked, this, &MainWindow::onNavigateToHome);
 
     // 分类功能按钮
     categoriesButton = new QPushButton("分类功能", this);
-    categoriesButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
+    categoriesButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #2196F3; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
     connect(categoriesButton, &QPushButton::clicked, this, &MainWindow::onNavigateToCategories);
 
     // 上传功能按钮
     uploadButton = new QPushButton("上传功能", this);
-    uploadButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
+    uploadButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #FF9800; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
     connect(uploadButton, &QPushButton::clicked, this, &MainWindow::onNavigateToUpload);
 
     // 搜索功能按钮
     searchButton = new QPushButton("搜索功能", this);
-    searchButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
+    searchButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #9C27B0; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
     connect(searchButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
 
     // 用户头像
     userAvatar = new QLabel(this);
     QPixmap avatarPixmap(":/avatar.jpg");
     userAvatar->setPixmap(avatarPixmap.scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    userAvatar->setStyleSheet("border: 2px solid white; border-radius: 20px;");
+    userAvatar->setStyleSheet("border: 2px solid white; border-radius: 20px; margin-right: 10px;");
 
     // 用户信息标签
     userInfoLabel = new QLabel("个人信息", this);
-    userInfoLabel->setStyleSheet("color: white; font-size: 16px;");
+    userInfoLabel->setStyleSheet("color: white; font-size: 16px; font-weight: bold;");
 
     // 布局
     QHBoxLayout *leftLayout = new QHBoxLayout();
@@ -63,7 +71,6 @@ void MainWindow::setupTopNavigationBar() {
     rightLayout->addWidget(userInfoLabel);
 
     mainLayout->addLayout(leftLayout);
-    mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
     mainLayout->addLayout(rightLayout);
 
