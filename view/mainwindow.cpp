@@ -55,9 +55,12 @@ void MainWindow::setupTopNavigationBar() {
     userAvatar->setPixmap(avatarPixmap.scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     userAvatar->setStyleSheet("border: 2px solid white; border-radius: 20px; margin-right: 10px;");
 
-    // 用户信息标签
-    userInfoLabel = new QLabel("个人信息", this);
-    userInfoLabel->setStyleSheet("color: white; font-size: 16px; font-weight: bold;");
+    // 个人信息按钮
+    personalInfoButton = new QPushButton("个人信息", this);
+    personalInfoButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #607D8B; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
+    connect(personalInfoButton, &QPushButton::clicked, this, &MainWindow::onNavigateToPersonalInfo);
 
     // 布局
     QHBoxLayout *leftLayout = new QHBoxLayout();
@@ -68,7 +71,7 @@ void MainWindow::setupTopNavigationBar() {
 
     QHBoxLayout *rightLayout = new QHBoxLayout();
     rightLayout->addWidget(userAvatar);
-    rightLayout->addWidget(userInfoLabel);
+    rightLayout->addWidget(personalInfoButton);
 
     mainLayout->addLayout(leftLayout);
     mainLayout->addSpacerItem(new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum));
@@ -102,6 +105,10 @@ void MainWindow::setupMainContent() {
     searchView = new SearchView(this);
     mainStack->addWidget(searchView);
 
+     // 创建个人信息界面
+     personalInfoView = new PersonalInfoView(this); // 使用 PersonalInfoView
+     mainStack->addWidget(personalInfoView);
+
     // 将主内容切换容器添加到布局
     centralWidget()->layout()->addWidget(mainStack);
 }
@@ -124,4 +131,9 @@ void MainWindow::onNavigateToUpload() {
 void MainWindow::onNavigateToSearch() {
     mainStack->setCurrentWidget(searchView); // 切换到搜索功能界面
     qDebug() << "切换到搜索功能界面";
+}
+
+void MainWindow::onNavigateToPersonalInfo() {
+    mainStack->setCurrentWidget(personalInfoView); // 切换到个人信息界面
+    qDebug() << "切换到个人信息界面";
 }

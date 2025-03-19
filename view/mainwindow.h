@@ -6,10 +6,11 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QStackedWidget>
-#include "ImageCarousel.h" // 引入轮播图片类
-#include "CategoryView.h" // 引入分类功能界面类
-#include "SearchView.h" // 引入搜索功能界面类
-#include "UploadRecipeView.h" // 引入上传功能界面类
+#include "ImageCarousel.h"
+#include "CategoryView.h"
+#include "SearchView.h"
+#include "UploadRecipeView.h"
+#include "PersonalInfoView.h" // 添加个人信息界面头文件
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -18,28 +19,29 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
 
 private slots:
-void onNavigateToHome(); // 切换到主界面
-void onNavigateToCategories(); // 切换到分类功能界面
-void onNavigateToUpload(); // 切换到上传功能界面
-void onNavigateToSearch(); // 切换到搜索功能界面
+    void onNavigateToHome(); // 切换到主界面
+    void onNavigateToCategories(); // 切换到分类功能界面
+    void onNavigateToUpload(); // 切换到上传功能界面
+    void onNavigateToSearch(); // 切换到搜索功能界面
+    void onNavigateToPersonalInfo(); // 切换到个人信息界面
 
 private:
     QPushButton *homeButton;
     QPushButton *categoriesButton;
     QPushButton *uploadButton;
-    QLineEdit *searchBox;
     QPushButton *searchButton;
-    QLabel *userInfoLabel;
+    QPushButton *personalInfoButton; // 个人信息按钮
     QLabel *userAvatar;
 
     QStackedWidget *mainStack; // 主界面内容切换容器
     ImageCarousel *imageCarousel; // 图片轮播组件
-    CategoryView *categoryView; // 分类功能界面
-    UploadRecipeView *uploadRecipeView; // 上传功能界面
-    SearchView *searchView; // 搜索功能界面
-    
-    void setupTopNavigationBar();
-    void setupMainContent();
+    CategoryView *categoryView;
+    UploadRecipeView *uploadRecipeView;
+    SearchView *searchView;
+    PersonalInfoView *personalInfoView; // 个人信息界面
+
+    void setupTopNavigationBar(); // 设置顶部导航栏
+    void setupMainContent(); // 设置主界面内容
 };
 
 #endif // MAINWINDOW_H

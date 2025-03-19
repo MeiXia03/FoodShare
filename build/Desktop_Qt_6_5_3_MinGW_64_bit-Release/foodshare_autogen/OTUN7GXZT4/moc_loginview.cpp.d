@@ -413,6 +413,7 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/foodshare/sql/DatabaseManager.h \
   F:/foodshare/view/CategoryView.h \
   F:/foodshare/view/ImageCarousel.h \
+  F:/foodshare/view/PersonalInfoView.h \
   F:/foodshare/view/SearchView.h \
   F:/foodshare/view/UploadRecipeView.h \
   F:/foodshare/view/communityview.h \
