@@ -45,15 +45,41 @@ void SearchView::onSearchClicked() {
 void SearchView::onResultDoubleClicked(int row, int column) {
     Q_UNUSED(column);
 
-    // 获取当前行的 recipe_id
-    int recipeId = resultTable->item(row, 0)->data(Qt::UserRole).toInt();
-    int userId = 1; // 假设当前登录用户ID为1
+    // 1. 检查行数据有效性
+    QTableWidgetItem *item = resultTable->item(row, 0);
+    if (!item) {
+        qWarning() << "Invalid row or column";
+        return;
+    }
 
-    // 弹出 CommunityView 窗口
-    CommunityView *communityView = new CommunityView(recipeId, userId);
-    communityView->setWindowTitle(QString("社区评论 - 食谱 ID: %1").arg(recipeId));
-    communityView->resize(800, 600); // 设置窗口大小
+    // 2. 获取 recipeId 和 userId
+    int recipeId = item->data(Qt::UserRole).toInt();
+    int userId = 1;
+
+    // 3. 创建或激活 CommunityView 窗口
+    if (!communityView) {
+        // 将 SearchView 设为父对象，确保生命周期可控
+        communityView = new CommunityView(recipeId, userId, this);
+
+        // 关键设置：强制作为独立窗口显示（覆盖父窗口位置）
+        communityView->setWindowFlags(Qt::Window);
+        communityView->setWindowModality(Qt::NonModal);
+        communityView->setAttribute(Qt::WA_DeleteOnClose);
+
+        // 窗口属性
+        communityView->setWindowTitle(QString("社区评论 - 食谱 ID: %1").arg(recipeId));
+        communityView->resize(800, 600);
+
+        // 窗口关闭时自动置空指针
+        connect(communityView, &CommunityView::destroyed, this, [this]() {
+            communityView = nullptr;
+        });
+    }
+
+    // 4. 确保窗口前置（兼容多平台）
     communityView->show();
+    communityView->raise();
+    communityView->activateWindow();
 }
 
 void SearchView::loadResults(const QString &keyword) {

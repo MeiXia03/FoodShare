@@ -633,6 +633,7 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/res/res.qrc \
 	F:/foodshare/sql/DatabaseManager.h \
 	F:/foodshare/sql/databasemanager.cpp \
+	F:/foodshare/view/SearchView.h \
 	F:/foodshare/view/backendview.cpp \
 	F:/foodshare/view/backendview.h \
 	F:/foodshare/view/categoryview.cpp \

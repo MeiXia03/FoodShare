@@ -21,13 +21,13 @@ public:
 private slots:
     void onSearchClicked(); // 搜索按钮点击事件
     void onLikeButtonClicked(int row); // 点赞按钮点击事件
-private slots:
-    void onResultDoubleClicked(int row, int column); // 双击结果表格事件    
+    void onResultDoubleClicked(int row, int column); // 双击结果表格事件
+
 private:
     QLineEdit *searchBox; // 搜索框
     QPushButton *searchButton; // 搜索按钮
     QTableWidget *resultTable; // 显示搜索结果的表格
-
+    CommunityView *communityView = nullptr;
     void setupUI(); // 初始化界面
     void loadResults(const QString &keyword); // 加载搜索结果
 };
