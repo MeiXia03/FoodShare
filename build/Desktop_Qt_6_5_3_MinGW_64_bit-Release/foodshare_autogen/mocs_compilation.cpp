@@ -6,4 +6,5 @@
 #include "OTUN7GXZT4/moc_imagecarousel.cpp"
 #include "OTUN7GXZT4/moc_loginview.cpp"
 #include "OTUN7GXZT4/moc_mainwindow.cpp"
+#include "OTUN7GXZT4/moc_registerview.cpp"
 #include "OTUN7GXZT4/moc_uploadrecipeview.cpp"

@@ -38,8 +38,8 @@ qt_add_executable(foodshare
         view/uploadrecipeview.h view/uploadrecipeview.cpp
         view/loginview.h view/loginview.cpp
         view/backendview.h view/backendview.cpp
-
         view/communityview.h view/communityview.cpp
+        view/registerview.h view/registerview.cpp
     )
     
 

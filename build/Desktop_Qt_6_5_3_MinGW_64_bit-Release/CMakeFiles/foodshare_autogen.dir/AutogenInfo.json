@@ -362,6 +362,12 @@
 			null
 		],
 		[
+			"F:/foodshare/view/registerview.h",
+			"MU",
+			"OTUN7GXZT4/moc_registerview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/uploadrecipeview.h",
 			"MU",
 			"OTUN7GXZT4/moc_uploadrecipeview.cpp",
@@ -449,6 +455,7 @@
 		[ "F:/foodshare/view/loginview.cpp", "MU", null ],
 		[ "F:/foodshare/view/main.cpp", "MU", null ],
 		[ "F:/foodshare/view/mainwindow.cpp", "MU", null ],
+		[ "F:/foodshare/view/registerview.cpp", "MU", null ],
 		[ "F:/foodshare/view/searchview.cpp", "MU", null ],
 		[ "F:/foodshare/view/uploadrecipeview.cpp", "MU", null ]
 	],

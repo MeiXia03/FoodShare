@@ -34,6 +34,11 @@ void LoginView::setupUI() {
     loginButton->setStyleSheet("padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;");
     connect(loginButton, &QPushButton::clicked, this, &LoginView::onLoginClicked);
 
+    // 创建注册按钮
+    registerButton = new QPushButton("没有账户，立即注册！", this);
+    registerButton->setStyleSheet("padding: 10px; background-color: #2196F3; color: white; border: none; border-radius: 5px;");
+    connect(registerButton, &QPushButton::clicked, this, &LoginView::onRegisterClicked);
+
     // 创建状态提示标签
     statusLabel = new QLabel(this);
     statusLabel->setStyleSheet("color: red; margin-top: 10px;");
@@ -46,6 +51,7 @@ void LoginView::setupUI() {
     layout->addWidget(new QLabel("密码:", this));
     layout->addWidget(passwordEdit);
     layout->addWidget(loginButton);
+    layout->addWidget(registerButton); // 添加注册按钮
     layout->addWidget(statusLabel);
 
     setLayout(layout);
@@ -85,4 +91,11 @@ void LoginView::onLoginClicked() {
 
     // 关闭登录界面
     this->close();
+}
+
+void LoginView::onRegisterClicked() {
+    // 打开独立的注册窗口
+    RegisterView *registerView = new RegisterView();
+    registerView->setAttribute(Qt::WA_DeleteOnClose); // 窗口关闭时自动释放内存
+    registerView->show();
 }

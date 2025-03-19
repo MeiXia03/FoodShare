@@ -647,6 +647,8 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/view/main.cpp \
 	F:/foodshare/view/mainwindow.cpp \
 	F:/foodshare/view/mainwindow.h \
+	F:/foodshare/view/registerview.cpp \
+	F:/foodshare/view/registerview.h \
 	F:/foodshare/view/searchview.cpp \
 	F:/foodshare/view/uploadrecipeview.cpp \
 	F:/foodshare/view/uploadrecipeview.h \
