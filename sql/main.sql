@@ -103,4 +103,35 @@ CREATE TABLE "users" (
   UNIQUE ("username" ASC)                              -- 用户名唯一约束
 );
 
+-- ----------------------------
+-- Table structure for friends
+-- 好友关系表：存储用户之间的好友关系
+-- ----------------------------
+DROP TABLE IF EXISTS "friends";
+CREATE TABLE "friends" (
+  "friend_id" INTEGER PRIMARY KEY AUTOINCREMENT,       -- 好友关系ID（主键，自增长）
+  "user_id" INTEGER NOT NULL,                         -- 用户ID（关联users表）
+  "friend_user_id" INTEGER NOT NULL,                  -- 好友的用户ID（关联users表）
+  "status" TEXT DEFAULT 'pending',                    -- 好友关系状态（pending-待确认，accepted-已接受，blocked-已屏蔽）
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,    -- 好友关系创建时间（默认当前时间戳）
+  FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
+  FOREIGN KEY ("friend_user_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
+  UNIQUE ("user_id", "friend_user_id")                -- 用户与好友的关系唯一
+);
+
+-- ----------------------------
+-- 消息记录表
+-- ----------------------------
+DROP TABLE IF EXISTS "messages";
+CREATE TABLE "messages" (
+  "message_id" INTEGER PRIMARY KEY AUTOINCREMENT,     -- 消息ID（主键，自增长）
+  "sender_id" INTEGER NOT NULL,                       -- 发送者用户ID（关联users表）
+  "receiver_id" INTEGER NOT NULL,                     -- 接收者用户ID（关联users表）
+  "content" TEXT NOT NULL,                            -- 消息内容
+  "is_read" BOOLEAN DEFAULT 0,                        -- 是否已读（0-未读，1-已读）
+  "created_at" DATETIME DEFAULT CURRENT_TIMESTAMP,    -- 消息发送时间（默认当前时间戳）
+  FOREIGN KEY ("sender_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION,
+  FOREIGN KEY ("receiver_id") REFERENCES "users" ("user_id") ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
 PRAGMA foreign_keys = true;

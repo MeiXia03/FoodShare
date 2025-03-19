@@ -15,8 +15,8 @@
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    public:
+    explicit MainWindow(int userId, QWidget *parent = nullptr); // 声明构造函数
 
 private slots:
     void onNavigateToHome(); // 切换到主界面
@@ -39,6 +39,8 @@ private:
     UploadRecipeView *uploadRecipeView;
     SearchView *searchView;
     PersonalInfoView *personalInfoView; // 个人信息界面
+
+    int userId; // 当前登录用户的 ID
 
     void setupTopNavigationBar(); // 设置顶部导航栏
     void setupMainContent(); // 设置主界面内容

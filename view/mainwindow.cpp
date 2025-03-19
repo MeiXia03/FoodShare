@@ -3,7 +3,8 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+MainWindow::MainWindow(int userId, QWidget *parent) 
+    : QMainWindow(parent), userId(userId) { // 接收 userId 参数
     setWindowTitle("美食分享系统");
     resize(800, 600);
     // 设置顶部导航栏
@@ -105,9 +106,9 @@ void MainWindow::setupMainContent() {
     searchView = new SearchView(this);
     mainStack->addWidget(searchView);
 
-     // 创建个人信息界面
-     personalInfoView = new PersonalInfoView(this); // 使用 PersonalInfoView
-     mainStack->addWidget(personalInfoView);
+    // 创建个人信息界面
+    personalInfoView = new PersonalInfoView(userId, this); // 传递用户 ID
+    mainStack->addWidget(personalInfoView);
 
     // 将主内容切换容器添加到布局
     centralWidget()->layout()->addWidget(mainStack);

@@ -77,7 +77,7 @@ void LoginView::onLoginClicked() {
         return;
     }
 
-    int userId = query.value("user_id").toInt();
+    int userId = query.value("user_id").toInt(); // 获取用户 ID
     bool isAdmin = query.value("is_admin").toBool();
 
     // 根据管理员标识跳转到不同界面
@@ -85,7 +85,7 @@ void LoginView::onLoginClicked() {
         BackendView *backendView = new BackendView();
         backendView->show();
     } else {
-        MainWindow *mainWindow = new MainWindow();
+        MainWindow *mainWindow = new MainWindow(userId); // 将 userId 传递给 MainWindow
         mainWindow->show();
     }
 
