@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Release-d2723f4053144dfd75a7.json",
+					"jsonFile" : "directory-.-Release-56662b6607d4ae51d6f1.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "foodshare::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-foodshare-Release-b0320d23958454adf0b4.json",
+					"jsonFile" : "target-foodshare-Release-b7dd0133ece2ac286350.json",
 					"name" : "foodshare",
 					"projectIndex" : 0
 				},

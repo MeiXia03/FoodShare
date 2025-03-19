@@ -42,12 +42,26 @@ void SearchView::onSearchClicked() {
     loadResults(keyword);
 }
 
+void SearchView::onResultDoubleClicked(int row, int column) {
+    Q_UNUSED(column);
+
+    // 获取当前行的 recipe_id
+    int recipeId = resultTable->item(row, 0)->data(Qt::UserRole).toInt();
+    int userId = 1; // 假设当前登录用户ID为1
+
+    // 弹出 CommunityView 窗口
+    CommunityView *communityView = new CommunityView(recipeId, userId);
+    communityView->setWindowTitle(QString("社区评论 - 食谱 ID: %1").arg(recipeId));
+    communityView->resize(800, 600); // 设置窗口大小
+    communityView->show();
+}
+
 void SearchView::loadResults(const QString &keyword) {
     resultTable->setRowCount(0); // 清空表格
 
     QSqlQuery query;
     QString sql = "SELECT recipe_id, title, content, video_path, likes FROM recipes "
-              "WHERE title LIKE :keyword";
+                  "WHERE title LIKE :keyword";
     query.prepare(sql);
     query.bindValue(":keyword", "%" + keyword + "%");
 
@@ -61,7 +75,9 @@ void SearchView::loadResults(const QString &keyword) {
         resultTable->insertRow(row);
 
         // 显示标题
-        resultTable->setItem(row, 0, new QTableWidgetItem(query.value("title").toString()));
+        QTableWidgetItem *titleItem = new QTableWidgetItem(query.value("title").toString());
+        titleItem->setData(Qt::UserRole, query.value("recipe_id").toInt()); // 绑定 recipe_id
+        resultTable->setItem(row, 0, titleItem);
 
         // 显示内容
         resultTable->setItem(row, 1, new QTableWidgetItem(query.value("content").toString()));

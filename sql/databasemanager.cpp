@@ -165,4 +165,38 @@ QVector<QVariantMap> DatabaseManager::getRecipes() {
     return recipes;
 }
 
+bool DatabaseManager::addComment(int userId, int recipeId, const QString& content) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO comments (user_id, recipe_id, content) VALUES (:user_id, :recipe_id, :content)");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":recipe_id", recipeId);
+    query.bindValue(":content", content);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to add comment:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+QVector<QVariantMap> DatabaseManager::getComments(int recipeId) {
+    QVector<QVariantMap> comments;
+    QSqlQuery query;
+    query.prepare("SELECT content, created_at FROM comments WHERE recipe_id = :recipe_id ORDER BY created_at DESC");
+    query.bindValue(":recipe_id", recipeId);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to get comments:" << query.lastError().text();
+        return comments;
+    }
+
+    while (query.next()) {
+        QVariantMap comment;
+        comment["content"] = query.value("content");
+        comment["created_at"] = query.value("created_at");
+        comments.append(comment);
+    }
+    return comments;
+}
+
 // 其他表的操作方法类似，省略重复代码

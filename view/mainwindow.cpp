@@ -36,20 +36,10 @@ void MainWindow::setupTopNavigationBar() {
     uploadButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
     connect(uploadButton, &QPushButton::clicked, this, &MainWindow::onNavigateToUpload);
 
-    // 社区功能按钮
-    communityButton = new QPushButton("社区功能", this);
-    communityButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
-    connect(communityButton, &QPushButton::clicked, this, &MainWindow::onNavigateToCommunity);
-
-    // 社区功能按钮
+    // 搜索功能按钮
     searchButton = new QPushButton("搜索功能", this);
     searchButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
     connect(searchButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
-
-    // 搜索功能按钮
-    QPushButton *searchNavButton = new QPushButton("搜索功能", this);
-    searchNavButton->setStyleSheet("color: white; font-size: 16px; background: transparent;");
-    connect(searchNavButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
 
     // 用户头像
     userAvatar = new QLabel(this);
@@ -66,7 +56,6 @@ void MainWindow::setupTopNavigationBar() {
     leftLayout->addWidget(homeButton);
     leftLayout->addWidget(categoriesButton);
     leftLayout->addWidget(uploadButton);
-    leftLayout->addWidget(communityButton);
     leftLayout->addWidget(searchButton);
 
     QHBoxLayout *rightLayout = new QHBoxLayout();
@@ -102,10 +91,6 @@ void MainWindow::setupMainContent() {
     uploadRecipeView = new UploadRecipeView(this); // 使用 UploadRecipeView
     mainStack->addWidget(uploadRecipeView);
 
-    // 创建社区功能界面
-    communityView = new QWidget(this); // 添加初始化
-    mainStack->addWidget(communityView);
-
     // 创建搜索功能界面
     searchView = new SearchView(this);
     mainStack->addWidget(searchView);
@@ -127,11 +112,6 @@ void MainWindow::onNavigateToCategories() {
 void MainWindow::onNavigateToUpload() {
     mainStack->setCurrentWidget(uploadRecipeView); // 切换到上传功能界面
     qDebug() << "切换到上传功能界面";
-}
-
-void MainWindow::onNavigateToCommunity() {
-    mainStack->setCurrentWidget(communityView); // 切换到社区功能界面
-    qDebug() << "切换到社区功能界面";
 }
 
 void MainWindow::onNavigateToSearch() {

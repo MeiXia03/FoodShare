@@ -9,6 +9,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+#include "communityview.h" // 引入 CommunityView
+
 
 class SearchView : public QWidget {
     Q_OBJECT
@@ -19,7 +21,8 @@ public:
 private slots:
     void onSearchClicked(); // 搜索按钮点击事件
     void onLikeButtonClicked(int row); // 点赞按钮点击事件
-
+private slots:
+    void onResultDoubleClicked(int row, int column); // 双击结果表格事件    
 private:
     QLineEdit *searchBox; // 搜索框
     QPushButton *searchButton; // 搜索按钮

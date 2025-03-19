@@ -123,6 +123,7 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtCore/qvector.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qversiontagging.h \
   F:/QT/6.5.3/mingw_64/include/QtCore/qxptype_traits.h \
+  F:/QT/6.5.3/mingw_64/include/QtGui/QPixmap \
   F:/QT/6.5.3/mingw_64/include/QtGui/qaction.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qbitmap.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qbrush.h \
@@ -170,6 +171,7 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QComboBox \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QLabel \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QLineEdit \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/QListWidget \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QMainWindow \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QPushButton \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QStackedWidget \
@@ -191,6 +193,8 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayout.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayoutitem.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qlineedit.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qlistview.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qlistwidget.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qmainwindow.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qpushbutton.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qrubberband.h \
@@ -410,4 +414,5 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/foodshare/view/CategoryView.h \
   F:/foodshare/view/ImageCarousel.h \
   F:/foodshare/view/SearchView.h \
-  F:/foodshare/view/UploadRecipeView.h
+  F:/foodshare/view/UploadRecipeView.h \
+  F:/foodshare/view/communityview.h

@@ -1,11 +1,9 @@
-#include "mainwindow.h" // 确保头文件名为小写 "mainwindow.h"
-
+#include "loginview.h"
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    LoginView loginView;
+    loginView.show();
     return a.exec();
 }

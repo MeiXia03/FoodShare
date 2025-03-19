@@ -320,15 +320,33 @@
 			null
 		],
 		[
+			"F:/foodshare/view/backendview.h",
+			"MU",
+			"OTUN7GXZT4/moc_backendview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/categoryview.h",
 			"MU",
 			"OTUN7GXZT4/moc_categoryview.cpp",
 			null
 		],
 		[
+			"F:/foodshare/view/communityview.h",
+			"MU",
+			"OTUN7GXZT4/moc_communityview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/imagecarousel.h",
 			"MU",
 			"OTUN7GXZT4/moc_imagecarousel.cpp",
+			null
+		],
+		[
+			"F:/foodshare/view/loginview.h",
+			"MU",
+			"OTUN7GXZT4/moc_loginview.cpp",
 			null
 		],
 		[
@@ -424,8 +442,11 @@
 	"SOURCES" : 
 	[
 		[ "F:/foodshare/sql/databasemanager.cpp", "MU", null ],
+		[ "F:/foodshare/view/backendview.cpp", "MU", null ],
 		[ "F:/foodshare/view/categoryview.cpp", "MU", null ],
+		[ "F:/foodshare/view/communityview.cpp", "MU", null ],
 		[ "F:/foodshare/view/imagecarousel.cpp", "MU", null ],
+		[ "F:/foodshare/view/loginview.cpp", "MU", null ],
 		[ "F:/foodshare/view/main.cpp", "MU", null ],
 		[ "F:/foodshare/view/mainwindow.cpp", "MU", null ],
 		[ "F:/foodshare/view/searchview.cpp", "MU", null ],

@@ -11,7 +11,6 @@
 #include "SearchView.h" // 引入搜索功能界面类
 #include "UploadRecipeView.h" // 引入上传功能界面类
 
-
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -22,14 +21,12 @@ private slots:
 void onNavigateToHome(); // 切换到主界面
 void onNavigateToCategories(); // 切换到分类功能界面
 void onNavigateToUpload(); // 切换到上传功能界面
-void onNavigateToCommunity(); // 切换到社区功能界面
 void onNavigateToSearch(); // 切换到搜索功能界面
 
 private:
     QPushButton *homeButton;
     QPushButton *categoriesButton;
     QPushButton *uploadButton;
-    QPushButton *communityButton;
     QLineEdit *searchBox;
     QPushButton *searchButton;
     QLabel *userInfoLabel;
@@ -39,7 +36,6 @@ private:
     ImageCarousel *imageCarousel; // 图片轮播组件
     CategoryView *categoryView; // 分类功能界面
     UploadRecipeView *uploadRecipeView; // 上传功能界面
-    QWidget *communityView; // 社区功能界面
     SearchView *searchView; // 搜索功能界面
     
     void setupTopNavigationBar();

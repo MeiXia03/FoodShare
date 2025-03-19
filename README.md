@@ -1,3 +1,5 @@
+#放F盘下启动
+
 #sql表
 -- 用户表
 CREATE TABLE IF NOT EXISTS users (
