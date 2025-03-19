@@ -2,6 +2,8 @@
 #include "uploadrecipeview.h" // 添加头文件
 #include <QVBoxLayout>
 #include <QDebug>
+#include <QSqlQuery>
+#include <QSqlError>
 
 MainWindow::MainWindow(int userId, QWidget *parent) 
     : QMainWindow(parent), userId(userId) { // 接收 userId 参数
@@ -50,11 +52,12 @@ void MainWindow::setupTopNavigationBar() {
         "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
     connect(searchButton, &QPushButton::clicked, this, &MainWindow::onNavigateToSearch);
 
-    // 用户头像
-    userAvatar = new QLabel(this);
-    QPixmap avatarPixmap(":/avatar.jpg");
-    userAvatar->setPixmap(avatarPixmap.scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    userAvatar->setStyleSheet("border: 2px solid white; border-radius: 20px; margin-right: 10px;");
+    // 聊天室按钮
+    chatRoomButton = new QPushButton("聊天室", this);
+    chatRoomButton->setStyleSheet(
+        "color: white; font-size: 16px; font-weight: bold; background-color: #607D8B; "
+        "border: none; border-radius: 5px; padding: 10px 20px; margin-right: 10px;");
+    connect(chatRoomButton, &QPushButton::clicked, this, &MainWindow::onNavigateToChatRoom);
 
     // 个人信息按钮
     personalInfoButton = new QPushButton("个人信息", this);
@@ -69,9 +72,9 @@ void MainWindow::setupTopNavigationBar() {
     leftLayout->addWidget(categoriesButton);
     leftLayout->addWidget(uploadButton);
     leftLayout->addWidget(searchButton);
+    leftLayout->addWidget(chatRoomButton);
 
     QHBoxLayout *rightLayout = new QHBoxLayout();
-    rightLayout->addWidget(userAvatar);
     rightLayout->addWidget(personalInfoButton);
 
     mainLayout->addLayout(leftLayout);
@@ -106,6 +109,10 @@ void MainWindow::setupMainContent() {
     searchView = new SearchView(this);
     mainStack->addWidget(searchView);
 
+    // 创建聊天室界面
+    chatRoomView = new ChatRoomView(userId, this); // 传递 userId
+    mainStack->addWidget(chatRoomView);
+
     // 创建个人信息界面
     personalInfoView = new PersonalInfoView(userId, this); // 传递用户 ID
     mainStack->addWidget(personalInfoView);
@@ -137,4 +144,9 @@ void MainWindow::onNavigateToSearch() {
 void MainWindow::onNavigateToPersonalInfo() {
     mainStack->setCurrentWidget(personalInfoView); // 切换到个人信息界面
     qDebug() << "切换到个人信息界面";
+}
+
+void MainWindow::onNavigateToChatRoom() {
+    mainStack->setCurrentWidget(chatRoomView); // 切换到聊天室界面
+    qDebug() << "切换到聊天室界面，用户ID:" << userId;
 }

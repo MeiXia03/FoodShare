@@ -2,6 +2,7 @@
 #include "OTUN7GXZT4/moc_SearchView.cpp"
 #include "OTUN7GXZT4/moc_backendview.cpp"
 #include "OTUN7GXZT4/moc_categoryview.cpp"
+#include "OTUN7GXZT4/moc_chatroomview.cpp"
 #include "OTUN7GXZT4/moc_communityview.cpp"
 #include "OTUN7GXZT4/moc_imagecarousel.cpp"
 #include "OTUN7GXZT4/moc_loginview.cpp"

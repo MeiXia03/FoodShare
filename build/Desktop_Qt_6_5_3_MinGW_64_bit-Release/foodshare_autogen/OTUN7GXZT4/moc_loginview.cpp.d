@@ -451,6 +451,7 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
   F:/foodshare/sql/DatabaseManager.h \
   F:/foodshare/view/CategoryView.h \
+  F:/foodshare/view/ChatRoomView.h \
   F:/foodshare/view/ImageCarousel.h \
   F:/foodshare/view/PersonalInfoView.h \
   F:/foodshare/view/SearchView.h \

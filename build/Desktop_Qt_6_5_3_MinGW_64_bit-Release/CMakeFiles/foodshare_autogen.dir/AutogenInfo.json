@@ -338,6 +338,12 @@
 			null
 		],
 		[
+			"F:/foodshare/view/chatroomview.h",
+			"MU",
+			"OTUN7GXZT4/moc_chatroomview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/communityview.h",
 			"MU",
 			"OTUN7GXZT4/moc_communityview.cpp",
@@ -456,6 +462,7 @@
 		[ "F:/foodshare/sql/databasemanager.cpp", "MU", null ],
 		[ "F:/foodshare/view/backendview.cpp", "MU", null ],
 		[ "F:/foodshare/view/categoryview.cpp", "MU", null ],
+		[ "F:/foodshare/view/chatroomview.cpp", "MU", null ],
 		[ "F:/foodshare/view/communityview.cpp", "MU", null ],
 		[ "F:/foodshare/view/imagecarousel.cpp", "MU", null ],
 		[ "F:/foodshare/view/loginview.cpp", "MU", null ],

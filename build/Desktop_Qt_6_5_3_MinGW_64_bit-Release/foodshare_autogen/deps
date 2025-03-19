@@ -677,6 +677,8 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/view/backendview.h \
 	F:/foodshare/view/categoryview.cpp \
 	F:/foodshare/view/categoryview.h \
+	F:/foodshare/view/chatroomview.cpp \
+	F:/foodshare/view/chatroomview.h \
 	F:/foodshare/view/communityview.cpp \
 	F:/foodshare/view/communityview.h \
 	F:/foodshare/view/imagecarousel.cpp \
