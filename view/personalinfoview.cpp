@@ -1,3 +1,4 @@
+#include "loginview.h"
 #include "personalinfoview.h"
 #include <QMessageBox>
 
@@ -21,6 +22,16 @@ void PersonalInfoView::setupUI() {
     changeAvatarButton->setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;");
     connect(changeAvatarButton, &QPushButton::clicked, this, &PersonalInfoView::onChangeAvatarClicked);
 
+    // 好友用户名输入框
+    usernameInput = new QLineEdit(this);
+    usernameInput->setPlaceholderText("输入好友用户名...");
+    usernameInput->setStyleSheet("padding: 10px; border: 1px solid #ccc; border-radius: 5px;");
+
+    // 添加好友按钮
+    addFriendButton = new QPushButton("添加好友", this);
+    addFriendButton->setStyleSheet("padding: 5px 10px; background-color: #FF9800; color: white; border-radius: 5px;");
+    connect(addFriendButton, &QPushButton::clicked, this, &PersonalInfoView::onAddFriendClicked);
+
     // 个性签名输入框
     signatureEdit = new QLineEdit(this);
     signatureEdit->setPlaceholderText("请输入个性签名...");
@@ -35,14 +46,67 @@ void PersonalInfoView::setupUI() {
     statusLabel = new QLabel(this);
     statusLabel->setStyleSheet("color: red; margin-top: 10px;");
 
+    // 退出登录按钮
+    logoutButton = new QPushButton("退出登录", this);
+    logoutButton->setStyleSheet("padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 5px;");
+    connect(logoutButton, &QPushButton::clicked, this, &PersonalInfoView::onLogoutClicked);
+
     // 布局
     layout->addWidget(avatarLabel, 0, Qt::AlignRight | Qt::AlignTop);
     layout->addWidget(changeAvatarButton, 0, Qt::AlignRight);
     layout->addWidget(signatureEdit);
     layout->addWidget(updateSignatureButton);
+    layout->addWidget(usernameInput);
+    layout->addWidget(addFriendButton);
     layout->addWidget(statusLabel);
+    layout->addWidget(logoutButton); // 添加退出登录按钮
 
     setLayout(layout);
+}
+
+void PersonalInfoView::onAddFriendClicked() {
+    QString friendUsername = usernameInput->text().trimmed();
+
+    if (friendUsername.isEmpty()) {
+        statusLabel->setText("用户名不能为空！");
+        return;
+    }
+
+    // 查询好友用户ID
+    QSqlQuery query;
+    query.prepare("SELECT user_id FROM users WHERE username = :username");
+    query.bindValue(":username", friendUsername);
+
+    if (!query.exec() || !query.next()) {
+        statusLabel->setText("用户不存在！");
+        return;
+    }
+
+    int friendUserId = query.value("user_id").toInt();
+
+    // 检查是否已经是好友
+    query.prepare("SELECT * FROM friends WHERE user_id = :user_id AND friend_user_id = :friend_user_id");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":friend_user_id", friendUserId);
+
+    if (query.exec() && query.next()) {
+        statusLabel->setText("该用户已经是您的好友！");
+        return;
+    }
+
+    // 添加好友关系
+    query.prepare("INSERT INTO friends (user_id, friend_user_id, status, created_at) "
+                  "VALUES (:user_id, :friend_user_id, 'pending', CURRENT_TIMESTAMP)");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":friend_user_id", friendUserId);
+
+    if (!query.exec()) {
+        statusLabel->setText("添加好友失败！");
+        return;
+    }
+
+    QMessageBox::information(this, "成功", "好友请求已发送！");
+    usernameInput->clear();
 }
 
 void PersonalInfoView::loadUserInfo() {
@@ -118,4 +182,17 @@ void PersonalInfoView::onUpdateSignatureClicked() {
     }
 
     QMessageBox::information(this, "成功", "个性签名更新成功！");
+}
+
+void PersonalInfoView::onLogoutClicked() {
+    // 显示登录界面
+    LoginView *loginView = new LoginView();
+    loginView->setAttribute(Qt::WA_DeleteOnClose); // 窗口关闭时自动释放内存
+    loginView->show();
+
+    // 关闭主窗口
+    QWidget *mainWindow = this->window(); // 获取主窗口
+    if (mainWindow) {
+        mainWindow->close();
+    }
 }

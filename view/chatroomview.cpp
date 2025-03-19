@@ -3,11 +3,23 @@
 ChatRoomView::ChatRoomView(int userId, QWidget *parent)
     : QWidget(parent), loggedInUserId(userId) {
     setupUI();
+    loadFriendRequests(); // 加载好友请求
     loadFriends(); // 加载好友列表
 }
 
 void ChatRoomView::setupUI() {
     QVBoxLayout *layout = new QVBoxLayout(this);
+
+    // 好友请求列表
+    friendRequestsList = new QListWidget(this);
+
+    // 接受好友请求按钮
+    acceptRequestButton = new QPushButton("接受", this);
+    connect(acceptRequestButton, &QPushButton::clicked, this, &ChatRoomView::onAcceptRequestClicked);
+
+    // 拒绝好友请求按钮
+    rejectRequestButton = new QPushButton("拒绝", this);
+    connect(rejectRequestButton, &QPushButton::clicked, this, &ChatRoomView::onRejectRequestClicked);
 
     // 好友列表
     friendsList = new QListWidget(this);
@@ -25,6 +37,10 @@ void ChatRoomView::setupUI() {
     connect(sendMessageButton, &QPushButton::clicked, this, &ChatRoomView::onSendMessageClicked);
 
     // 布局
+    layout->addWidget(new QLabel("好友请求", this));
+    layout->addWidget(friendRequestsList);
+    layout->addWidget(acceptRequestButton);
+    layout->addWidget(rejectRequestButton);
     layout->addWidget(new QLabel("好友列表", this));
     layout->addWidget(friendsList);
     layout->addWidget(new QLabel("消息记录", this));
@@ -36,6 +52,8 @@ void ChatRoomView::setupUI() {
 }
 
 void ChatRoomView::loadFriends() {
+    friendsList->clear();
+
     QSqlQuery query;
     query.prepare("SELECT f.friend_user_id, u.username FROM friends f "
                   "JOIN users u ON f.friend_user_id = u.user_id "
@@ -124,4 +142,73 @@ void ChatRoomView::onSendMessageClicked() {
     qDebug() << "消息发送成功";
     messageInput->clear();
     loadMessages(friendId); // 重新加载消息记录
+}
+
+void ChatRoomView::loadFriendRequests() {
+    friendRequestsList->clear();
+
+    QSqlQuery query;
+    query.prepare("SELECT f.friend_id, u.username FROM friends f "
+                  "JOIN users u ON f.user_id = u.user_id "
+                  "WHERE f.friend_user_id = :user_id AND f.status = 'pending'");
+    query.bindValue(":user_id", loggedInUserId);
+
+    if (!query.exec()) {
+        qDebug() << "加载好友请求失败:" << query.lastError().text();
+        return;
+    }
+
+    while (query.next()) {
+        int friendId = query.value("friend_id").toInt();
+        QString friendName = query.value("username").toString();
+
+        QListWidgetItem *item = new QListWidgetItem(friendName, friendRequestsList);
+        item->setData(Qt::UserRole, friendId); // 将好友关系ID存储到列表项中
+    }
+}
+
+void ChatRoomView::onAcceptRequestClicked() {
+    QListWidgetItem *selectedItem = friendRequestsList->currentItem();
+    if (!selectedItem) {
+        qDebug() << "未选择好友请求";
+        return;
+    }
+
+    int friendId = selectedItem->data(Qt::UserRole).toInt();
+
+    QSqlQuery query;
+    query.prepare("UPDATE friends SET status = 'accepted' WHERE friend_id = :friend_id");
+    query.bindValue(":friend_id", friendId);
+
+    if (!query.exec()) {
+        qDebug() << "接受好友请求失败:" << query.lastError().text();
+        return;
+    }
+
+    qDebug() << "好友请求已接受";
+    loadFriendRequests(); // 重新加载好友请求
+    loadFriends();        // 重新加载好友列表
+}
+
+void ChatRoomView::onRejectRequestClicked() {
+    QListWidgetItem *selectedItem = friendRequestsList->currentItem();
+    if (!selectedItem) {
+        qDebug() << "未选择好友请求";
+        return;
+    }
+
+    int friendId = selectedItem->data(Qt::UserRole).toInt();
+
+    QSqlQuery query;
+    query.prepare("DELETE FROM friends WHERE friend_id = :friend_id");
+    query.bindValue(":friend_id", friendId);
+
+    if (!query.exec()) {
+        qDebug() << "拒绝好友请求失败:" << query.lastError().text();
+        return;
+    }
+
+    qDebug() << "好友请求已拒绝";
+    loadFriendRequests(); // 重新加载好友请求
+    loadFriends();        // 重新加载好友列表
 }

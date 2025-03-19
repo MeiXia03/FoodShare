@@ -40,30 +40,38 @@ namespace {
 struct qt_meta_stringdata_CLASSChatRoomViewENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSChatRoomViewENDCLASS = QtMocHelpers::stringData(
     "ChatRoomView",
-    "onFriendSelected",
+    "onAcceptRequestClicked",
     "",
+    "onRejectRequestClicked",
+    "onFriendSelected",
     "onSendMessageClicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSChatRoomViewENDCLASS_t {
-    uint offsetsAndSizes[8];
+    uint offsetsAndSizes[12];
     char stringdata0[13];
-    char stringdata1[17];
+    char stringdata1[23];
     char stringdata2[1];
-    char stringdata3[21];
+    char stringdata3[23];
+    char stringdata4[17];
+    char stringdata5[21];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSChatRoomViewENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSChatRoomViewENDCLASS_t qt_meta_stringdata_CLASSChatRoomViewENDCLASS = {
     {
         QT_MOC_LITERAL(0, 12),  // "ChatRoomView"
-        QT_MOC_LITERAL(13, 16),  // "onFriendSelected"
-        QT_MOC_LITERAL(30, 0),  // ""
-        QT_MOC_LITERAL(31, 20)   // "onSendMessageClicked"
+        QT_MOC_LITERAL(13, 22),  // "onAcceptRequestClicked"
+        QT_MOC_LITERAL(36, 0),  // ""
+        QT_MOC_LITERAL(37, 22),  // "onRejectRequestClicked"
+        QT_MOC_LITERAL(60, 16),  // "onFriendSelected"
+        QT_MOC_LITERAL(77, 20)   // "onSendMessageClicked"
     },
     "ChatRoomView",
-    "onFriendSelected",
+    "onAcceptRequestClicked",
     "",
+    "onRejectRequestClicked",
+    "onFriendSelected",
     "onSendMessageClicked"
 };
 #undef QT_MOC_LITERAL
@@ -76,7 +84,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSChatRoomViewENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,10 +92,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSChatRoomViewENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x08,    1 /* Private */,
-       3,    0,   27,    2, 0x08,    2 /* Private */,
+       1,    0,   38,    2, 0x08,    1 /* Private */,
+       3,    0,   39,    2, 0x08,    2 /* Private */,
+       4,    0,   40,    2, 0x08,    3 /* Private */,
+       5,    0,   41,    2, 0x08,    4 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -103,6 +115,10 @@ Q_CONSTINIT const QMetaObject ChatRoomView::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSChatRoomViewENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<ChatRoomView, std::true_type>,
+        // method 'onAcceptRequestClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onRejectRequestClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onFriendSelected'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onSendMessageClicked'
@@ -117,8 +133,10 @@ void ChatRoomView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         auto *_t = static_cast<ChatRoomView *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->onFriendSelected(); break;
-        case 1: _t->onSendMessageClicked(); break;
+        case 0: _t->onAcceptRequestClicked(); break;
+        case 1: _t->onRejectRequestClicked(); break;
+        case 2: _t->onFriendSelected(); break;
+        case 3: _t->onSendMessageClicked(); break;
         default: ;
         }
     }
@@ -144,13 +162,13 @@ int ChatRoomView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }
