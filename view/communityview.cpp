@@ -74,7 +74,8 @@ void CommunityView::loadRecipeImageAndTitle() {
 }
 
 void CommunityView::loadComments() {
-    commentsList->clear();
+    commentsList->clear(); // 清空评论列表
+
     QSqlQuery query;
     query.prepare("SELECT users.username, comments.content, comments.created_at "
                   "FROM comments "
@@ -111,6 +112,7 @@ void CommunityView::onPostCommentClicked() {
     query.bindValue(":content", content);
 
     if (!query.exec()) {
+        qDebug() << "评论发布失败:" << query.lastError().text();
         QMessageBox::critical(this, "错误", "评论发布失败，请稍后重试！");
         return;
     }
