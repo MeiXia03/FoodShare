@@ -50,7 +50,7 @@ void CommunityView::setupUI() {
 void CommunityView::loadRecipeImageAndTitle() {
     // 加载食谱标题和图片
     QSqlQuery query;
-    query.prepare("SELECT title FROM recipes WHERE recipe_id = :recipe_id");
+    query.prepare("SELECT title, video_path FROM recipes WHERE recipe_id = :recipe_id");
     query.bindValue(":recipe_id", currentRecipeId);
 
     if (!query.exec() || !query.next()) {
@@ -60,10 +60,11 @@ void CommunityView::loadRecipeImageAndTitle() {
     }
 
     QString title = query.value("title").toString();
+    QString imagePath = query.value("video_path").toString(); // 从数据库获取图片路径
+
     recipeTitleLabel->setText(title);
 
-    QString imagePath = QString(":/recipe_%1.jpg").arg(currentRecipeId);
-    QPixmap pixmap(imagePath);
+    QPixmap pixmap(imagePath); // 使用文件系统中的路径加载图片
 
     if (pixmap.isNull()) {
         recipeImageLabel->setText("未找到图片");

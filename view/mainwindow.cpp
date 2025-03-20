@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "uploadrecipeview.h" // 添加头文件
+#include "uploadrecipeview.h" 
 #include <QVBoxLayout>
 #include <QDebug>
 #include <QSqlQuery>
@@ -102,7 +102,7 @@ void MainWindow::setupMainContent() {
     mainStack->addWidget(categoryView);
 
     // 创建上传功能界面
-    uploadRecipeView = new UploadRecipeView(this); // 使用 UploadRecipeView
+    uploadRecipeView = new UploadRecipeView(userId, this); // 传递 userId
     mainStack->addWidget(uploadRecipeView);
 
     // 创建搜索功能界面
@@ -122,11 +122,13 @@ void MainWindow::setupMainContent() {
 }
 
 void MainWindow::onNavigateToHome() {
+    imageCarousel->refreshData(); // 刷新图片轮播数据
     mainStack->setCurrentWidget(imageCarousel); // 切换到图片轮播界面
     qDebug() << "切换到主界面";
 }
 
 void MainWindow::onNavigateToCategories() {
+    categoryView->refreshData(); // 刷新分类功能数据
     mainStack->setCurrentWidget(categoryView); // 切换到分类功能界面
     qDebug() << "切换到分类功能界面";
 }
@@ -149,4 +151,14 @@ void MainWindow::onNavigateToPersonalInfo() {
 void MainWindow::onNavigateToChatRoom() {
     mainStack->setCurrentWidget(chatRoomView); // 切换到聊天室界面
     qDebug() << "切换到聊天室界面，用户ID:" << userId;
+}
+
+void MainWindow::switchToImageCarousel() {
+    imageCarousel->refreshData(); // 刷新图片轮播数据
+    mainStack->setCurrentWidget(imageCarousel);
+}
+
+void MainWindow::switchToCategoryView() {
+    categoryView->refreshData(); // 刷新分类视图数据
+    mainStack->setCurrentWidget(categoryView);
 }

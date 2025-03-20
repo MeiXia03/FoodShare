@@ -1,6 +1,10 @@
 #include "SearchView.h"
 #include "../sql/DatabaseManager.h"
 #include <QHeaderView>
+#include <QMessageBox>
+#include <QTextEdit>
+#include <QPropertyAnimation>
+#include <QTimer>
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     if (!DatabaseManager::instance().connect()) {
@@ -23,11 +27,14 @@ void SearchView::setupUI() {
 
     // 创建结果表格
     resultTable = new QTableWidget(this);
-    resultTable->setColumnCount(6); // 增加一列用于评论按钮
-    resultTable->setHorizontalHeaderLabels({"标题", "内容", "视频路径", "点赞数", "点赞", "评论"});
+    resultTable->setColumnCount(5); // 删除视频路径列
+    resultTable->setHorizontalHeaderLabels({"标题", "内容", "点赞数", "点赞", "评论"});
     resultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     resultTable->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
     resultTable->setSelectionBehavior(QAbstractItemView::SelectRows); // 整行选择
+
+    // 连接双击事件
+    connect(resultTable, &QTableWidget::cellDoubleClicked, this, &SearchView::onContentDoubleClicked);
 
     // 布局
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -40,6 +47,45 @@ void SearchView::setupUI() {
 void SearchView::onSearchClicked() {
     QString keyword = searchBox->text();
     loadResults(keyword);
+}
+
+void SearchView::onContentDoubleClicked(int row, int column) {
+    // 检查是否双击了内容列
+    if (column == 1) { // 内容列的索引为 1
+        QString content = resultTable->item(row, column)->text();
+        showContentDialog(content); // 调用美化后的弹窗
+    }
+}
+
+void SearchView::showContentDialog(const QString &content) {
+    // 创建对话框
+    QDialog dialog(this);
+    dialog.setWindowTitle("菜谱内容");
+    dialog.setMinimumSize(600, 400);
+
+    // 创建布局
+    QVBoxLayout *layout = new QVBoxLayout(&dialog);
+
+    // 创建标题标签
+    QLabel *titleLabel = new QLabel("菜谱介绍", &dialog);
+    titleLabel->setStyleSheet("font-size: 18px; font-weight: bold; margin-bottom: 10px;");
+    layout->addWidget(titleLabel);
+
+    // 创建内容显示区域
+    QTextEdit *contentEdit = new QTextEdit(&dialog);
+    contentEdit->setText(content);
+    contentEdit->setReadOnly(true);
+    contentEdit->setStyleSheet("font-size: 14px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;");
+    layout->addWidget(contentEdit);
+
+    // 创建关闭按钮
+    QPushButton *closeButton = new QPushButton("关闭", &dialog);
+    closeButton->setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;");
+    connect(closeButton, &QPushButton::clicked, &dialog, &QDialog::accept);
+    layout->addWidget(closeButton);
+
+    // 显示对话框
+    dialog.exec();
 }
 
 void SearchView::onCommentButtonClicked(int row) {
@@ -82,8 +128,8 @@ void SearchView::loadResults(const QString &keyword) {
     resultTable->setRowCount(0); // 清空表格
 
     QSqlQuery query;
-    QString sql = "SELECT recipe_id, title, content, video_path, likes FROM recipes "
-                  "WHERE title LIKE :keyword";
+    QString sql = "SELECT recipe_id, title, content, likes FROM recipes "
+                  "WHERE title LIKE :keyword"; 
     query.prepare(sql);
     query.bindValue(":keyword", "%" + keyword + "%");
 
@@ -104,16 +150,13 @@ void SearchView::loadResults(const QString &keyword) {
         // 显示内容
         resultTable->setItem(row, 1, new QTableWidgetItem(query.value("content").toString()));
 
-        // 显示视频路径
-        resultTable->setItem(row, 2, new QTableWidgetItem(query.value("video_path").toString()));
-
         // 显示点赞数
-        resultTable->setItem(row, 3, new QTableWidgetItem(query.value("likes").toString()));
+        resultTable->setItem(row, 2, new QTableWidgetItem(query.value("likes").toString()));
 
         // 创建点赞按钮
         QPushButton *likeButton = new QPushButton("点赞", this);
         likeButton->setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;");
-        resultTable->setCellWidget(row, 4, likeButton);
+        resultTable->setCellWidget(row, 3, likeButton);
 
         // 连接点赞按钮的点击事件
         connect(likeButton, &QPushButton::clicked, [this, row]() {
@@ -123,7 +166,7 @@ void SearchView::loadResults(const QString &keyword) {
         // 创建评论按钮
         QPushButton *commentButton = new QPushButton("评论", this);
         commentButton->setStyleSheet("padding: 5px 10px; background-color: #2196F3; color: white; border-radius: 5px;");
-        resultTable->setCellWidget(row, 5, commentButton);
+        resultTable->setCellWidget(row, 4, commentButton);
 
         // 连接评论按钮的点击事件
         connect(commentButton, &QPushButton::clicked, [this, row]() {
@@ -134,10 +177,36 @@ void SearchView::loadResults(const QString &keyword) {
     }
 }
 
-void SearchView::onLikeButtonClicked(int row) {
-    // 获取当前行的 recipe_id
-    QString title = resultTable->item(row, 0)->text();
+void SearchView::animateLikeButton(QPushButton *button) {
+    // 设置按钮颜色变化
+    button->setStyleSheet("background-color: #FF5722; color: white; border-radius: 5px;");
+    QTimer::singleShot(200, [button]() {
+        button->setStyleSheet("background-color: #4CAF50; color: white; border-radius: 5px;");
+    });
 
+    // 创建缩放动画
+    QPropertyAnimation *animation = new QPropertyAnimation(button, "geometry");
+    QRect originalGeometry = button->geometry();
+    animation->setDuration(200);
+    animation->setStartValue(originalGeometry);
+    animation->setKeyValueAt(0.5, QRect(originalGeometry.x() - 5, originalGeometry.y() - 5,
+                                        originalGeometry.width() + 10, originalGeometry.height() + 10));
+    animation->setEndValue(originalGeometry);
+    animation->setEasingCurve(QEasingCurve::OutBounce);
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void SearchView::onLikeButtonClicked(int row) {
+    // 获取当前行的标题
+    QTableWidgetItem *titleItem = resultTable->item(row, 0);
+    if (!titleItem) {
+        qWarning() << "点赞失败：标题项为空";
+        return;
+    }
+
+    QString title = titleItem->text();
+
+    // 更新数据库中的点赞数
     QSqlQuery query;
     query.prepare("UPDATE recipes SET likes = likes + 1 WHERE title = :title");
     query.bindValue(":title", title);
@@ -147,9 +216,21 @@ void SearchView::onLikeButtonClicked(int row) {
         return;
     }
 
-    // 更新点赞数
-    int currentLikes = resultTable->item(row, 3)->text().toInt();
-    resultTable->setItem(row, 3, new QTableWidgetItem(QString::number(currentLikes + 1)));
+    // 更新表格中的点赞数
+    QTableWidgetItem *likesItem = resultTable->item(row, 2); // 点赞数的列索引是 2
+    if (!likesItem) {
+        qWarning() << "点赞失败：点赞数项为空";
+        return;
+    }
+
+    int currentLikes = likesItem->text().toInt();
+    likesItem->setText(QString::number(currentLikes + 1));
+
+    // 获取点赞按钮
+    QPushButton *likeButton = qobject_cast<QPushButton *>(resultTable->cellWidget(row, 3));
+    if (likeButton) {
+        animateLikeButton(likeButton); // 调用动画效果
+    }
 
     qDebug() << "点赞成功，标题:" << title;
 }

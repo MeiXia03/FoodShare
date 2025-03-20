@@ -16,8 +16,8 @@
 class UploadRecipeView : public QWidget {
     Q_OBJECT
 
-public:
-    explicit UploadRecipeView(QWidget *parent = nullptr);
+    public:
+    explicit UploadRecipeView(int userId, QWidget *parent = nullptr); // 添加 userId 参数
 
 private slots:
     void onUploadClicked();       // 上传按钮点击事件
@@ -31,6 +31,8 @@ private:
     QComboBox *typeCombo;         // 类型下拉框
     QPushButton *uploadButton;    // 上传按钮
     QPushButton *selectImageButton; // 选择图片按钮
+
+    int userId;                   // 当前用户的 ID
 
     void setupUI();               // 初始化界面
 };

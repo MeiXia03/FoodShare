@@ -15,6 +15,7 @@ class CategoryView : public QWidget {
 
 public:
     explicit CategoryView(QWidget *parent = nullptr);
+    void refreshData(); // 添加刷新数据的方法
 
 private slots:
     void onFilterChanged(); // 当筛选条件改变时触发

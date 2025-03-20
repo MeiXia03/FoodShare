@@ -27,6 +27,9 @@ private slots:
     void onNavigateToPersonalInfo(); // 切换到个人信息界面
     void onNavigateToChatRoom(); // 切换到聊天室界面
 
+    void switchToImageCarousel(); // 添加方法声明
+    void switchToCategoryView();  // 添加方法声明
+
 private:
     QPushButton *homeButton;
     QPushButton *categoriesButton;

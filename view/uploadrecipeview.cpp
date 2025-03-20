@@ -1,7 +1,8 @@
 #include "uploadrecipeview.h"
 #include <QFileInfo>
 
-UploadRecipeView::UploadRecipeView(QWidget *parent) : QWidget(parent) {
+UploadRecipeView::UploadRecipeView(int userId, QWidget *parent) 
+    : QWidget(parent), userId(userId) { // 初始化 userId
     if (!DatabaseManager::instance().connect()) {
         qDebug() << "数据库连接失败";
         return;
@@ -96,7 +97,7 @@ void UploadRecipeView::onUploadClicked() {
     }
 
     // 调用 DatabaseManager 添加食谱
-    if (DatabaseManager::instance().addRecipe(1, title, content, category, type, imagePath)) { // 假设 user_id 为 1
+    if (DatabaseManager::instance().addRecipe(userId, title, content, category, type, imagePath)) { // 使用 userId
         QMessageBox::information(this, "成功", "食谱上传成功！");
         titleEdit->clear();
         contentEdit->clear();

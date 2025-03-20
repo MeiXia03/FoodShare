@@ -42,6 +42,19 @@ void CategoryView::setupUI() {
     setLayout(layout);
 }
 
+void CategoryView::refreshData() {
+    categoryComboBox->clear();
+    typeComboBox->clear();
+    resultTable->setRowCount(0);
+
+    categoryComboBox->addItem("全部分类", ""); // 默认选项
+    typeComboBox->addItem("全部类型", "");   // 默认选项
+
+    loadCategories();
+    loadTypes();
+    loadRecipes("", ""); // 默认加载所有食谱
+}
+
 void CategoryView::loadCategories() {
     QSqlQuery query;
     if (!query.exec("SELECT DISTINCT category FROM recipes WHERE category IS NOT NULL")) {
