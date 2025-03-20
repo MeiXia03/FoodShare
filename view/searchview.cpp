@@ -12,6 +12,13 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
         return;
     }
     setupUI();
+
+    onSearchClicked();
+}
+
+void SearchView::refreshData() {
+    // 调用搜索方法，刷新数据
+    onSearchClicked();
 }
 
 void SearchView::setupUI() {
@@ -27,7 +34,7 @@ void SearchView::setupUI() {
 
     // 创建结果表格
     resultTable = new QTableWidget(this);
-    resultTable->setColumnCount(5); // 删除视频路径列
+    resultTable->setColumnCount(5);
     resultTable->setHorizontalHeaderLabels({"标题", "内容", "点赞数", "点赞", "评论"});
     resultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     resultTable->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
@@ -234,3 +241,5 @@ void SearchView::onLikeButtonClicked(int row) {
 
     qDebug() << "点赞成功，标题:" << title;
 }
+
+

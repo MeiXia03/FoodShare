@@ -9,12 +9,9 @@
 	"INCLUDE_DIR" : "F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/include",
 	"INPUTS" : 
 	[
-		"F:/foodshare/res/image3.jpg",
-		"F:/foodshare/res/image1.jpg",
 		"F:/foodshare/res/recipe_2.jpg",
 		"F:/foodshare/res/recipe_1.jpg",
 		"F:/foodshare/res/avatar.jpg",
-		"F:/foodshare/res/image2.jpg",
 		"F:/foodshare/res/loadFeedback.jpg"
 	],
 	"LOCK_FILE" : "F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/CMakeFiles/foodshare_autogen.dir/AutoRcc_res_PNK5WDWK6L_Lock.lock",

@@ -1,5 +1,5 @@
 #include "loginview.h"
-#include "backendview.h" // 后端主界面
+#include "../back/backendview.h"
 #include <QMessageBox>
 
 LoginView::LoginView(QWidget *parent) : QWidget(parent) {
@@ -82,7 +82,7 @@ void LoginView::onLoginClicked() {
 
     // 根据管理员标识跳转到不同界面
     if (isAdmin) {
-        BackendView *backendView = new BackendView();
+        BackendView *backendView = new BackendView(userId); // 将 userId 传递给 BackendView
         backendView->show();
     } else {
         MainWindow *mainWindow = new MainWindow(userId); // 将 userId 传递给 MainWindow

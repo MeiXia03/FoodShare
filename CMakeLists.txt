@@ -18,6 +18,8 @@ file(GLOB CODE_SORCES
     "view/*.ui"
     "sql/*.h"
     "sql/*.cpp"
+    "back/*.h"
+    "back/*.cpp"
 )
 
 set(PROJECT_SOURCES

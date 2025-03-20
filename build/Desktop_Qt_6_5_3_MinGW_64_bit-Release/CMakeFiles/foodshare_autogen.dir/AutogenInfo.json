@@ -373,6 +373,30 @@
 	"HEADERS" : 
 	[
 		[
+			"F:/foodshare/back/backendview.h",
+			"MU",
+			"ZGWRZXKS5H/moc_backendview.cpp",
+			null
+		],
+		[
+			"F:/foodshare/back/feedbackcollectionview.h",
+			"MU",
+			"ZGWRZXKS5H/moc_feedbackcollectionview.cpp",
+			null
+		],
+		[
+			"F:/foodshare/back/recipemanagementview.h",
+			"MU",
+			"ZGWRZXKS5H/moc_recipemanagementview.cpp",
+			null
+		],
+		[
+			"F:/foodshare/back/usermanagementview.h",
+			"MU",
+			"ZGWRZXKS5H/moc_usermanagementview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/sql/DatabaseManager.h",
 			"MU",
 			"BFRA4CB3AK/moc_DatabaseManager.cpp",
@@ -382,12 +406,6 @@
 			"F:/foodshare/view/SearchView.h",
 			"MU",
 			"OTUN7GXZT4/moc_SearchView.cpp",
-			null
-		],
-		[
-			"F:/foodshare/view/backendview.h",
-			"MU",
-			"OTUN7GXZT4/moc_backendview.cpp",
 			null
 		],
 		[
@@ -524,8 +542,11 @@
 	"SETTINGS_FILE" : "F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/CMakeFiles/foodshare_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "F:/foodshare/back/backendview.cpp", "MU", null ],
+		[ "F:/foodshare/back/feedbackcollectionview.cpp", "MU", null ],
+		[ "F:/foodshare/back/recipemanagementview.cpp", "MU", null ],
+		[ "F:/foodshare/back/usermanagementview.cpp", "MU", null ],
 		[ "F:/foodshare/sql/databasemanager.cpp", "MU", null ],
-		[ "F:/foodshare/view/backendview.cpp", "MU", null ],
 		[ "F:/foodshare/view/categoryview.cpp", "MU", null ],
 		[ "F:/foodshare/view/chatroomview.cpp", "MU", null ],
 		[ "F:/foodshare/view/communityview.cpp", "MU", null ],

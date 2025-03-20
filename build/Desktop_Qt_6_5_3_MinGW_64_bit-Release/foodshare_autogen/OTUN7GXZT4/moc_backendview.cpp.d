@@ -133,7 +133,16 @@ F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/foodshare_autogen/OTUN7
   F:/QT/6.5.3/mingw_64/include/QtGui/qtransform.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs.h \
   F:/QT/6.5.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/QHBoxLayout \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/QPushButton \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/QVBoxLayout \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/QWidget \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qboxlayout.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qgridlayout.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayout.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+  F:/QT/6.5.3/mingw_64/include/QtWidgets/qpushbutton.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qsizepolicy.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
   F:/QT/6.5.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \

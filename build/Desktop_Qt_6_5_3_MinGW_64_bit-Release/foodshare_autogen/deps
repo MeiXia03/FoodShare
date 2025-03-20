@@ -188,6 +188,7 @@ foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlglobal.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QComboBox \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QFileDialog \
+	F:/QT/6.5.3/mingw_64/include/QtWidgets/QHBoxLayout \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QLabel \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QLineEdit \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QListWidget \
@@ -729,6 +730,14 @@ foodshare_autogen/timestamp: \
 	F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
 	F:/QT/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
 	F:/foodshare/CMakeLists.txt \
+	F:/foodshare/back/backendview.cpp \
+	F:/foodshare/back/backendview.h \
+	F:/foodshare/back/feedbackcollectionview.cpp \
+	F:/foodshare/back/feedbackcollectionview.h \
+	F:/foodshare/back/recipemanagementview.cpp \
+	F:/foodshare/back/recipemanagementview.h \
+	F:/foodshare/back/usermanagementview.cpp \
+	F:/foodshare/back/usermanagementview.h \
 	F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/.qtc/package-manager/auto-setup.cmake \
 	F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/CMakeFiles/3.29.3/CMakeCXXCompiler.cmake \
 	F:/foodshare/build/Desktop_Qt_6_5_3_MinGW_64_bit-Release/CMakeFiles/3.29.3/CMakeRCCompiler.cmake \
@@ -738,8 +747,6 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/sql/DatabaseManager.h \
 	F:/foodshare/sql/databasemanager.cpp \
 	F:/foodshare/view/SearchView.h \
-	F:/foodshare/view/backendview.cpp \
-	F:/foodshare/view/backendview.h \
 	F:/foodshare/view/categoryview.cpp \
 	F:/foodshare/view/categoryview.h \
 	F:/foodshare/view/chatroomview.cpp \
