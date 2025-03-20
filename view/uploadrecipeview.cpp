@@ -1,12 +1,12 @@
 #include "uploadrecipeview.h"
-#include <QMessageBox>
+#include <QFileInfo>
 
 UploadRecipeView::UploadRecipeView(QWidget *parent) : QWidget(parent) {
-  if (!DatabaseManager::instance().connect()) {
-      qDebug() << "数据库连接失败";
-      return;
-  }
-  setupUI();
+    if (!DatabaseManager::instance().connect()) {
+        qDebug() << "数据库连接失败";
+        return;
+    }
+    setupUI();
 }
 
 void UploadRecipeView::setupUI() {
@@ -20,10 +20,16 @@ void UploadRecipeView::setupUI() {
     contentEdit->setPlaceholderText("请输入食谱内容");
     contentEdit->setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;");
 
-    // 创建视频路径输入框
+    // 创建图片路径输入框
     videoPathEdit = new QLineEdit(this);
-    videoPathEdit->setPlaceholderText("请输入视频路径");
+    videoPathEdit->setPlaceholderText("请选择图片文件");
+    videoPathEdit->setReadOnly(true);
     videoPathEdit->setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;");
+
+    // 创建选择图片按钮
+    selectImageButton = new QPushButton("选择图片", this);
+    selectImageButton->setStyleSheet("padding: 5px; background-color: #2196F3; color: white; border-radius: 5px;");
+    connect(selectImageButton, &QPushButton::clicked, this, &UploadRecipeView::onSelectImageClicked);
 
     // 创建分类下拉框
     categoryCombo = new QComboBox(this);
@@ -46,8 +52,9 @@ void UploadRecipeView::setupUI() {
     layout->addWidget(titleEdit);
     layout->addWidget(new QLabel("食谱内容:", this));
     layout->addWidget(contentEdit);
-    layout->addWidget(new QLabel("视频路径:", this));
+    layout->addWidget(new QLabel("图片路径:", this));
     layout->addWidget(videoPathEdit);
+    layout->addWidget(selectImageButton);
     layout->addWidget(new QLabel("分类:", this));
     layout->addWidget(categoryCombo);
     layout->addWidget(new QLabel("类型:", this));
@@ -57,10 +64,24 @@ void UploadRecipeView::setupUI() {
     setLayout(layout);
 }
 
+void UploadRecipeView::onSelectImageClicked() {
+    QString filePath = QFileDialog::getOpenFileName(this, "选择图片文件", "", "图片文件 (*.jpg *.png *.bmp)");
+    if (!filePath.isEmpty()) {
+        QString destDir = QDir::currentPath() + "/res/";
+        QDir().mkpath(destDir); // 确保目录存在
+        QString destPath = destDir + QFileInfo(filePath).fileName();
+        if (QFile::copy(filePath, destPath)) {
+            videoPathEdit->setText(destPath); // 将图片路径设置到输入框
+        } else {
+            QMessageBox::warning(this, "错误", "图片保存失败！");
+        }
+    }
+}
+
 void UploadRecipeView::onUploadClicked() {
     QString title = titleEdit->text();
     QString content = contentEdit->toPlainText();
-    QString videoPath = videoPathEdit->text();
+    QString imagePath = videoPathEdit->text(); // 使用 videoPathEdit 存储图片路径
     QString category = categoryCombo->currentText();
     QString type = typeCombo->currentText();
 
@@ -69,8 +90,13 @@ void UploadRecipeView::onUploadClicked() {
         return;
     }
 
+    if (imagePath.isEmpty()) {
+        QMessageBox::warning(this, "警告", "请选择图片文件！");
+        return;
+    }
+
     // 调用 DatabaseManager 添加食谱
-    if (DatabaseManager::instance().addRecipe(1, title, content, category, type, videoPath)) { // 假设 user_id 为 1
+    if (DatabaseManager::instance().addRecipe(1, title, content, category, type, imagePath)) { // 假设 user_id 为 1
         QMessageBox::information(this, "成功", "食谱上传成功！");
         titleEdit->clear();
         contentEdit->clear();
