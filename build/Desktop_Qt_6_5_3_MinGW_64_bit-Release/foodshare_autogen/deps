@@ -187,6 +187,7 @@ foodshare_autogen/timestamp: \
 	F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlexports.h \
 	F:/QT/6.5.3/mingw_64/include/QtSql/qtsqlglobal.h \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QComboBox \
+	F:/QT/6.5.3/mingw_64/include/QtWidgets/QDialog \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QFileDialog \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QHBoxLayout \
 	F:/QT/6.5.3/mingw_64/include/QtWidgets/QLabel \
@@ -734,6 +735,8 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/back/backendview.h \
 	F:/foodshare/back/feedbackcollectionview.cpp \
 	F:/foodshare/back/feedbackcollectionview.h \
+	F:/foodshare/back/recipecommentsview.cpp \
+	F:/foodshare/back/recipecommentsview.h \
 	F:/foodshare/back/recipemanagementview.cpp \
 	F:/foodshare/back/recipemanagementview.h \
 	F:/foodshare/back/usermanagementview.cpp \

@@ -34,6 +34,7 @@ qt_add_executable(foodshare
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res/res.qrc
+        back/recipecommentsview.h back/recipecommentsview.cpp
     )
     
 

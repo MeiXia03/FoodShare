@@ -6,7 +6,8 @@
 #include <QPropertyAnimation>
 #include <QTimer>
 
-SearchView::SearchView(QWidget *parent) : QWidget(parent) {
+SearchView::SearchView(int userId, QWidget *parent)
+    : QWidget(parent), userId(userId) { // 初始化 userId
     if (!DatabaseManager::instance().connect()) {
         qDebug() << "数据库连接失败";
         return;
@@ -104,11 +105,10 @@ void SearchView::onCommentButtonClicked(int row) {
     }
 
     int recipeId = item->data(Qt::UserRole).toInt();
-    int userId = 1; // 假设当前登录用户ID为1
 
     // 创建或激活 CommunityView 窗口
     if (!communityView) {
-        communityView = new CommunityView(recipeId, userId, this);
+        communityView = new CommunityView(recipeId, userId, this); // 传递 userId
 
         // 设置为独立窗口
         communityView->setWindowFlags(Qt::Window);

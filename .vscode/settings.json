@@ -10,6 +10,13 @@
     "utility": "cpp",
     "variant": "cpp",
     "algorithm": "cpp",
-    "format": "cpp"
+    "format": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "system_error": "cpp",
+    "optional": "cpp"
   }
 }

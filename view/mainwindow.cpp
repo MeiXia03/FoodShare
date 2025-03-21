@@ -106,7 +106,7 @@ void MainWindow::setupMainContent() {
     mainStack->addWidget(uploadRecipeView);
 
     // 创建搜索功能界面
-    searchView = new SearchView(this);
+    searchView = new SearchView(userId, this); // 传递 userId
     mainStack->addWidget(searchView);
 
     // 创建聊天室界面

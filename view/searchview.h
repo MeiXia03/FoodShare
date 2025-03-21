@@ -16,7 +16,7 @@ class SearchView : public QWidget {
     Q_OBJECT
 
 public:
-    explicit SearchView(QWidget *parent = nullptr);
+explicit SearchView(int userId, QWidget *parent = nullptr); 
     void refreshData(); // 添加刷新数据的方法
     
 private slots:
@@ -27,6 +27,8 @@ private slots:
 
 
 private:
+
+    int userId; // 当前登录用户的 ID
     QLineEdit *searchBox; // 搜索框
     QPushButton *searchButton; // 搜索按钮
     QTableWidget *resultTable; // 显示搜索结果的表格

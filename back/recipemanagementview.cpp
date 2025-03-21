@@ -1,4 +1,5 @@
 #include "recipemanagementview.h"
+#include "RecipeCommentsView.h"
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFile>
@@ -92,9 +93,17 @@ void RecipeManagementView::loadResults(const QString &keyword) {
 }
 
 void RecipeManagementView::onContentDoubleClicked(int row, int column) {
-    // 检查是否双击了内容列
-    if (column == 1) { // 内容列的索引为 1
+    if (column == 0) { // 双击标题列
+        int recipeId = resultTable->item(row, column)->data(Qt::UserRole).toInt();
+
+        // 打开评论窗口
+        RecipeCommentsView *commentsView = new RecipeCommentsView(recipeId, this);
+        commentsView->setWindowModality(Qt::ApplicationModal); // 设置为模态窗口
+        commentsView->exec(); // 显示模态窗口
+    } else if (column == 1) { // 双击内容列
         QString content = resultTable->item(row, column)->text();
+
+        // 打开内容窗口
         showContentDialog(content);
     }
 }

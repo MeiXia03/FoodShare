@@ -385,6 +385,12 @@
 			null
 		],
 		[
+			"F:/foodshare/back/recipecommentsview.h",
+			"MU",
+			"ZGWRZXKS5H/moc_recipecommentsview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/back/recipemanagementview.h",
 			"MU",
 			"ZGWRZXKS5H/moc_recipemanagementview.cpp",
@@ -550,6 +556,7 @@
 	[
 		[ "F:/foodshare/back/backendview.cpp", "MU", null ],
 		[ "F:/foodshare/back/feedbackcollectionview.cpp", "MU", null ],
+		[ "F:/foodshare/back/recipecommentsview.cpp", "MU", null ],
 		[ "F:/foodshare/back/recipemanagementview.cpp", "MU", null ],
 		[ "F:/foodshare/back/usermanagementview.cpp", "MU", null ],
 		[ "F:/foodshare/sql/databasemanager.cpp", "MU", null ],
