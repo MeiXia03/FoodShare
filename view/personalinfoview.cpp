@@ -218,5 +218,6 @@ void PersonalInfoView::onFeedbackButtonClicked() {
     // 打开反馈界面
     FeedbackView *feedbackView = new FeedbackView(userId, this);
     feedbackView->setAttribute(Qt::WA_DeleteOnClose); // 窗口关闭时自动释放内存
+    feedbackView->setWindowModality(Qt::ApplicationModal); // 设置为模态窗口
     feedbackView->show();
 }
