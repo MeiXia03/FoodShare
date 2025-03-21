@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>avatar.jpg</file>
         <file>loadFeedback.jpg</file>
-        <file>recipe_1.jpg</file>
-        <file>recipe_2.jpg</file>
     </qresource>
 </RCC>

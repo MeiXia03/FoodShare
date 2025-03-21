@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QSqlQuery>
 #include <QSqlError>
+#include "feedbackview.h"
 
 class PersonalInfoView : public QWidget {
     Q_OBJECT
@@ -21,11 +22,13 @@ private slots:
     void onUpdateSignatureClicked(); // 更新个性签名按钮点击事件
     void onAddFriendClicked(); // 添加好友按钮点击事件
     void onLogoutClicked(); // 退出登录按钮点击事件
+    void onFeedbackButtonClicked(); // 图片按钮点击事件
 
 private:
     int userId; // 当前用户ID
     QLabel *avatarLabel; // 显示用户头像
     QPushButton *changeAvatarButton; // 更改头像按钮
+    QPushButton *feedbackButton; // 图片按钮
     QLineEdit *signatureEdit; // 个性签名输入框
     QPushButton *updateSignatureButton; // 更新个性签名按钮
     QLabel *statusLabel; // 状态提示标签

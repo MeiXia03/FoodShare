@@ -753,6 +753,8 @@ foodshare_autogen/timestamp: \
 	F:/foodshare/view/chatroomview.h \
 	F:/foodshare/view/communityview.cpp \
 	F:/foodshare/view/communityview.h \
+	F:/foodshare/view/feedbackview.cpp \
+	F:/foodshare/view/feedbackview.h \
 	F:/foodshare/view/imagecarousel.cpp \
 	F:/foodshare/view/imagecarousel.h \
 	F:/foodshare/view/loginview.cpp \

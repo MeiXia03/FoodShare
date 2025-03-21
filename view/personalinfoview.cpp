@@ -13,14 +13,31 @@ void PersonalInfoView::setupUI() {
 
     // 用户头像
     avatarLabel = new QLabel(this);
-    avatarLabel->setFixedSize(100, 100); // 设置头像大小
-    avatarLabel->setStyleSheet("border: 2px solid #ccc; border-radius: 50px; background-color: #f0f0f0;");
+    avatarLabel->setFixedSize(100, 100); // 缩小头像大小
+    avatarLabel->setStyleSheet("border: 2px solid #ccc; border-radius: 40px; background-color: #f0f0f0;"); // 圆形头像
     avatarLabel->setAlignment(Qt::AlignCenter);
 
     // 更改头像按钮
     changeAvatarButton = new QPushButton("更改头像", this);
     changeAvatarButton->setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;");
     connect(changeAvatarButton, &QPushButton::clicked, this, &PersonalInfoView::onChangeAvatarClicked);
+
+    // 图片按钮
+    feedbackButton = new QPushButton(this);
+    feedbackButton->setFixedSize(30, 30); // 设置图片按钮大小为 30px
+    feedbackButton->setStyleSheet("border: none; background-color: transparent;");
+    QPixmap feedbackPixmap(":/loadFeedback.jpg");
+    if (!feedbackPixmap.isNull()) {
+        feedbackButton->setIcon(QIcon(feedbackPixmap));
+        feedbackButton->setIconSize(QSize(30, 30)); // 设置图片大小为 30px
+    }
+    connect(feedbackButton, &QPushButton::clicked, this, &PersonalInfoView::onFeedbackButtonClicked);
+
+    // 创建一个水平布局，用于放置图片按钮和更改头像按钮
+    QHBoxLayout *avatarButtonLayout = new QHBoxLayout();
+    avatarButtonLayout->addWidget(feedbackButton); // 添加图片按钮
+    avatarButtonLayout->addStretch(); // 添加弹性空间
+    avatarButtonLayout->addWidget(changeAvatarButton); // 添加更改头像按钮
 
     // 好友用户名输入框
     usernameInput = new QLineEdit(this);
@@ -53,7 +70,7 @@ void PersonalInfoView::setupUI() {
 
     // 布局
     layout->addWidget(avatarLabel, 0, Qt::AlignRight | Qt::AlignTop);
-    layout->addWidget(changeAvatarButton, 0, Qt::AlignRight);
+    layout->addLayout(avatarButtonLayout); // 添加图片按钮和更改头像按钮的水平布局
     layout->addWidget(signatureEdit);
     layout->addWidget(updateSignatureButton);
     layout->addWidget(usernameInput);
@@ -195,4 +212,11 @@ void PersonalInfoView::onLogoutClicked() {
     if (mainWindow) {
         mainWindow->close();
     }
+}
+
+void PersonalInfoView::onFeedbackButtonClicked() {
+    // 打开反馈界面
+    FeedbackView *feedbackView = new FeedbackView(userId, this);
+    feedbackView->setAttribute(Qt::WA_DeleteOnClose); // 窗口关闭时自动释放内存
+    feedbackView->show();
 }

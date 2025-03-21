@@ -427,6 +427,12 @@
 			null
 		],
 		[
+			"F:/foodshare/view/feedbackview.h",
+			"MU",
+			"OTUN7GXZT4/moc_feedbackview.cpp",
+			null
+		],
+		[
 			"F:/foodshare/view/imagecarousel.h",
 			"MU",
 			"OTUN7GXZT4/moc_imagecarousel.cpp",
@@ -550,6 +556,7 @@
 		[ "F:/foodshare/view/categoryview.cpp", "MU", null ],
 		[ "F:/foodshare/view/chatroomview.cpp", "MU", null ],
 		[ "F:/foodshare/view/communityview.cpp", "MU", null ],
+		[ "F:/foodshare/view/feedbackview.cpp", "MU", null ],
 		[ "F:/foodshare/view/imagecarousel.cpp", "MU", null ],
 		[ "F:/foodshare/view/loginview.cpp", "MU", null ],
 		[ "F:/foodshare/view/main.cpp", "MU", null ],
