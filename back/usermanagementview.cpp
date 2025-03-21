@@ -82,6 +82,16 @@ void UserManagementView::loadResults(const QString &keyword) {
 
         int userId = query.value("user_id").toInt();
 
+        // 创建删除按钮
+        QPushButton *deleteButton = new QPushButton("删除", this);
+        deleteButton->setStyleSheet("padding: 5px 10px; background-color: #f44336; color: white; border-radius: 5px;");
+        resultTable->setCellWidget(row, 3, deleteButton);
+
+        // 连接删除按钮的点击事件
+        connect(deleteButton, &QPushButton::clicked, [this, row]() {
+            onDeleteButtonClicked(row);
+        });
+        
         // 检查用户是否在黑名单中
         QSqlQuery blacklistQuery;
         blacklistQuery.prepare("SELECT block_id FROM blacklist WHERE user_id = :user_id");
@@ -259,7 +269,14 @@ void UserManagementView::onDeleteButtonClicked(int row) {
         return; // 用户取消删除
     }
 
-    // 删除数据库记录
+    // 检查并删除黑名单表中的记录
+    if (!unblockUserFromDatabase(userId)) {
+        qDebug() << "黑名单中没有该用户或删除黑名单记录失败";
+    } else {
+        qDebug() << "黑名单记录已删除";
+    }
+
+    // 删除用户记录
     if (!deleteUserFromDatabase(userId)) {
         QMessageBox::critical(this, "错误", "删除用户失败！");
         return;
@@ -267,7 +284,7 @@ void UserManagementView::onDeleteButtonClicked(int row) {
 
     // 从表格中移除行
     resultTable->removeRow(row);
-    QMessageBox::information(this, "成功", "用户已成功删除！");
+    QMessageBox::information(this, "成功", "用户及其黑名单记录已成功删除！");
 }
 
 bool UserManagementView::deleteUserFromDatabase(int userId) {
