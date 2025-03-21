@@ -19,6 +19,8 @@ class UserManagementView : public QWidget {
 private slots:
     void onSearchClicked(); // 搜索按钮点击事件
     void onDeleteButtonClicked(int row); // 删除按钮点击事件
+    void onBlockButtonClicked(int row); // 封禁按钮点击事件
+    void onUnblockButtonClicked(int row); // 取消封禁按钮点击事件
     void onTableDoubleClicked(int row, int column); // 双击表格事件
 
 private:
@@ -32,6 +34,9 @@ private:
     void showAvatarDialog(const QString &avatarPath); // 显示头像弹窗
     void showSignatureDialog(const QString &signature); // 显示个性签名弹窗
     bool deleteUserFromDatabase(int userId); // 从数据库删除用户
+    bool blockUserInDatabase(int userId, const QString &reason); // 将用户封禁到黑名单表
+    bool unblockUserFromDatabase(int userId); // 从黑名单表中删除用户
+    
 };
 
 #endif // USERMANAGEMENTVIEW_H

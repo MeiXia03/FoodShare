@@ -28,8 +28,8 @@ void UserManagementView::setupUI() {
 
     // 创建结果表格
     resultTable = new QTableWidget(this);
-    resultTable->setColumnCount(4);
-    resultTable->setHorizontalHeaderLabels({"用户名", "头像路径", "个性签名", "删除"});
+    resultTable->setColumnCount(5); 
+    resultTable->setHorizontalHeaderLabels({"用户名", "头像路径", "个性签名", "删除", "封禁"});
     resultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     resultTable->setEditTriggers(QAbstractItemView::NoEditTriggers); // 禁止编辑
     resultTable->setSelectionBehavior(QAbstractItemView::SelectRows); // 整行选择
@@ -80,18 +80,112 @@ void UserManagementView::loadResults(const QString &keyword) {
         // 显示个性签名
         resultTable->setItem(row, 2, new QTableWidgetItem(query.value("signature").toString()));
 
-        // 创建删除按钮
-        QPushButton *deleteButton = new QPushButton("删除", this);
-        deleteButton->setStyleSheet("padding: 5px 10px; background-color: #f44336; color: white; border-radius: 5px;");
-        resultTable->setCellWidget(row, 3, deleteButton);
+        int userId = query.value("user_id").toInt();
 
-        // 连接删除按钮的点击事件
-        connect(deleteButton, &QPushButton::clicked, [this, row]() {
-            onDeleteButtonClicked(row);
+        // 检查用户是否在黑名单中
+        QSqlQuery blacklistQuery;
+        blacklistQuery.prepare("SELECT block_id FROM blacklist WHERE user_id = :user_id");
+        blacklistQuery.bindValue(":user_id", userId);
+
+        bool isBlocked = false;
+        if (blacklistQuery.exec() && blacklistQuery.next()) {
+            isBlocked = true;
+        }
+
+        // 创建封禁/取消封禁按钮
+        QPushButton *blockButton = new QPushButton(this);
+        blockButton->setText(isBlocked ? "取消封禁" : "封禁");
+        blockButton->setStyleSheet(isBlocked
+                                   ? "padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;"
+                                   : "padding: 5px 10px; background-color: #FF9800; color: white; border-radius: 5px;");
+        resultTable->setCellWidget(row, 4, blockButton);
+
+        // 连接封禁/取消封禁按钮的点击事件
+        connect(blockButton, &QPushButton::clicked, [this, row, isBlocked]() {
+            if (isBlocked) {
+                onUnblockButtonClicked(row); // 取消封禁
+            } else {
+                onBlockButtonClicked(row); // 封禁
+            }
         });
 
         row++;
     }
+}
+
+bool UserManagementView::blockUserInDatabase(int userId, const QString &reason) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO blacklist (user_id, admin_id, reason, created_at) "
+                  "VALUES (:user_id, :admin_id, :reason, CURRENT_TIMESTAMP)");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":admin_id", 2);
+    query.bindValue(":reason", reason);
+
+    if (!query.exec()) {
+        qDebug() << "封禁用户失败:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+void UserManagementView::onBlockButtonClicked(int row) {
+    QTableWidgetItem *usernameItem = resultTable->item(row, 0);
+    if (!usernameItem) {
+        qWarning() << "封禁失败：用户名项为空";
+        return;
+    }
+
+    int userId = usernameItem->data(Qt::UserRole).toInt();
+    QString username = usernameItem->text();
+
+    // 弹出输入封禁原因的对话框
+    QDialog dialog(this);
+    dialog.setWindowTitle("封禁用户");
+    dialog.setMinimumSize(400, 200);
+
+    QVBoxLayout *layout = new QVBoxLayout(&dialog);
+
+    QLabel *label = new QLabel(QString("请输入封禁用户 '%1' 的原因：").arg(username), &dialog);
+    layout->addWidget(label);
+
+    QLineEdit *reasonInput = new QLineEdit(&dialog);
+    reasonInput->setPlaceholderText("输入封禁原因...");
+    layout->addWidget(reasonInput);
+
+    QPushButton *confirmButton = new QPushButton("确认封禁", &dialog);
+    connect(confirmButton, &QPushButton::clicked, [&]() {
+        QString reason = reasonInput->text().trimmed();
+        if (reason.isEmpty()) {
+            QMessageBox::warning(&dialog, "警告", "封禁原因不能为空！");
+            return;
+        }
+
+        // 将封禁信息存储到黑名单表
+        if (blockUserInDatabase(userId, reason)) {
+            QMessageBox::information(&dialog, "成功", "用户已成功封禁！");
+            dialog.accept();
+
+            // 更新按钮为“取消封禁”
+            QPushButton *blockButton = qobject_cast<QPushButton *>(resultTable->cellWidget(row, 4));
+            if (blockButton) {
+                blockButton->setText("取消封禁");
+                blockButton->setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border-radius: 5px;");
+                disconnect(blockButton, &QPushButton::clicked, nullptr, nullptr); // 断开旧的信号连接
+                connect(blockButton, &QPushButton::clicked, [this, row]() {
+                    onUnblockButtonClicked(row); // 重新连接取消封禁事件
+                });
+            }
+        } else {
+            QMessageBox::critical(&dialog, "错误", "封禁用户失败！");
+        }
+    });
+    layout->addWidget(confirmButton);
+
+    QPushButton *cancelButton = new QPushButton("取消", &dialog);
+    connect(cancelButton, &QPushButton::clicked, &dialog, &QDialog::reject);
+    layout->addWidget(cancelButton);
+
+    dialog.exec();
 }
 
 void UserManagementView::onTableDoubleClicked(int row, int column) {
@@ -183,6 +277,57 @@ bool UserManagementView::deleteUserFromDatabase(int userId) {
 
     if (!query.exec()) {
         qDebug() << "删除用户失败:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+void UserManagementView::onUnblockButtonClicked(int row) {
+    QTableWidgetItem *usernameItem = resultTable->item(row, 0);
+    if (!usernameItem) {
+        qWarning() << "取消封禁失败：用户名项为空";
+        return;
+    }
+
+    int userId = usernameItem->data(Qt::UserRole).toInt();
+
+    // 弹出确认对话框
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "确认取消封禁",
+                                  "确定要取消封禁该用户吗？",
+                                  QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::No) {
+        return; // 用户取消操作
+    }
+
+    // 删除黑名单记录
+    if (!unblockUserFromDatabase(userId)) {
+        QMessageBox::critical(this, "错误", "取消封禁失败！");
+        return;
+    }
+
+    // 更新按钮为“封禁”
+    QPushButton *blockButton = qobject_cast<QPushButton *>(resultTable->cellWidget(row, 4));
+    if (blockButton) {
+        blockButton->setText("封禁");
+        blockButton->setStyleSheet("padding: 5px 10px; background-color: #FF9800; color: white; border-radius: 5px;");
+        disconnect(blockButton, &QPushButton::clicked, nullptr, nullptr); // 断开旧的信号连接
+        connect(blockButton, &QPushButton::clicked, [this, row]() {
+            onBlockButtonClicked(row); // 重新连接封禁事件
+        });
+    }
+
+    QMessageBox::information(this, "成功", "用户已成功取消封禁！");
+}
+
+bool UserManagementView::unblockUserFromDatabase(int userId) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM blacklist WHERE user_id = :user_id");
+    query.bindValue(":user_id", userId);
+
+    if (!query.exec()) {
+        qDebug() << "取消封禁失败:" << query.lastError().text();
         return false;
     }
     return true;

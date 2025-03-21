@@ -44,19 +44,23 @@ static constexpr auto qt_meta_stringdata_CLASSUserManagementViewENDCLASS = QtMoc
     "",
     "onDeleteButtonClicked",
     "row",
+    "onBlockButtonClicked",
+    "onUnblockButtonClicked",
     "onTableDoubleClicked",
     "column"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSUserManagementViewENDCLASS_t {
-    uint offsetsAndSizes[14];
+    uint offsetsAndSizes[18];
     char stringdata0[19];
     char stringdata1[16];
     char stringdata2[1];
     char stringdata3[22];
     char stringdata4[4];
     char stringdata5[21];
-    char stringdata6[7];
+    char stringdata6[23];
+    char stringdata7[21];
+    char stringdata8[7];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSUserManagementViewENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -67,14 +71,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSUserManagementViewENDCLASS_t qt
         QT_MOC_LITERAL(35, 0),  // ""
         QT_MOC_LITERAL(36, 21),  // "onDeleteButtonClicked"
         QT_MOC_LITERAL(58, 3),  // "row"
-        QT_MOC_LITERAL(62, 20),  // "onTableDoubleClicked"
-        QT_MOC_LITERAL(83, 6)   // "column"
+        QT_MOC_LITERAL(62, 20),  // "onBlockButtonClicked"
+        QT_MOC_LITERAL(83, 22),  // "onUnblockButtonClicked"
+        QT_MOC_LITERAL(106, 20),  // "onTableDoubleClicked"
+        QT_MOC_LITERAL(127, 6)   // "column"
     },
     "UserManagementView",
     "onSearchClicked",
     "",
     "onDeleteButtonClicked",
     "row",
+    "onBlockButtonClicked",
+    "onUnblockButtonClicked",
     "onTableDoubleClicked",
     "column"
 };
@@ -88,7 +96,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSUserManagementViewENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -96,14 +104,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSUserManagementViewENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x08,    1 /* Private */,
-       3,    1,   33,    2, 0x08,    2 /* Private */,
-       5,    2,   36,    2, 0x08,    4 /* Private */,
+       1,    0,   44,    2, 0x08,    1 /* Private */,
+       3,    1,   45,    2, 0x08,    2 /* Private */,
+       5,    1,   48,    2, 0x08,    4 /* Private */,
+       6,    1,   51,    2, 0x08,    6 /* Private */,
+       7,    2,   54,    2, 0x08,    8 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    6,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    8,
 
        0        // eod
 };
@@ -122,6 +134,12 @@ Q_CONSTINIT const QMetaObject UserManagementView::staticMetaObject = { {
         // method 'onDeleteButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'onBlockButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'onUnblockButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'onTableDoubleClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -138,7 +156,9 @@ void UserManagementView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->onSearchClicked(); break;
         case 1: _t->onDeleteButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 2: _t->onTableDoubleClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 2: _t->onBlockButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->onUnblockButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 4: _t->onTableDoubleClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     }
@@ -163,13 +183,13 @@ int UserManagementView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

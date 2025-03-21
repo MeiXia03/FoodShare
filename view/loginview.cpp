@@ -80,6 +80,19 @@ void LoginView::onLoginClicked() {
     int userId = query.value("user_id").toInt(); // 获取用户 ID
     bool isAdmin = query.value("is_admin").toBool();
 
+    // 检查用户是否被封禁
+    QSqlQuery blacklistQuery;
+    blacklistQuery.prepare("SELECT reason FROM blacklist WHERE user_id = :user_id");
+    blacklistQuery.bindValue(":user_id", userId);
+
+    if (blacklistQuery.exec() && blacklistQuery.next()) {
+        QString reason = blacklistQuery.value("reason").toString();
+
+        // 弹出封禁原因窗口
+        QMessageBox::critical(this, "登录失败", QString("您的账户已被封禁。\n原因：%1").arg(reason));
+        return; // 禁止登录
+    }
+
     // 根据管理员标识跳转到不同界面
     if (isAdmin) {
         BackendView *backendView = new BackendView(userId); // 将 userId 传递给 BackendView
