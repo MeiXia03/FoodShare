@@ -112,10 +112,39 @@ void RecipeManagementView::showContentDialog(const QString &content) {
     // 创建对话框
     QDialog dialog(this);
     dialog.setWindowTitle("菜谱内容");
-    dialog.setMinimumSize(600, 400);
+    dialog.setMinimumSize(600, 600);
 
     // 创建布局
     QVBoxLayout *layout = new QVBoxLayout(&dialog);
+
+    // 创建图片显示区域
+    QLabel *imageLabel = new QLabel(&dialog);
+    imageLabel->setAlignment(Qt::AlignCenter);
+    imageLabel->setStyleSheet("border: 1px solid #ccc; margin-bottom: 10px;");
+
+    // 从数据库中加载图片路径
+    QSqlQuery query;
+    query.prepare("SELECT video_path FROM recipes WHERE content = :content");
+    query.bindValue(":content", content);
+
+    if (query.exec() && query.next()) {
+        QString imagePath = query.value("video_path").toString();
+        if (!imagePath.isEmpty()) {
+            QPixmap pixmap(imagePath);
+            if (!pixmap.isNull()) {
+                imageLabel->setPixmap(pixmap.scaled(400, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            } else {
+                imageLabel->setText("无法加载图片");
+            }
+        } else {
+            imageLabel->setText("无图片可显示");
+        }
+    } else {
+        imageLabel->setText("加载图片失败");
+        qDebug() << "加载图片失败:" << query.lastError().text();
+    }
+
+    layout->addWidget(imageLabel);
 
     // 创建标题标签
     QLabel *titleLabel = new QLabel("菜谱介绍", &dialog);

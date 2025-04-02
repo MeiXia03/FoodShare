@@ -198,5 +198,3 @@ QVector<QVariantMap> DatabaseManager::getComments(int recipeId) {
     }
     return comments;
 }
-
-// 其他表的操作方法类似，省略重复代码
