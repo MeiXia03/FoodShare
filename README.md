@@ -35,8 +35,8 @@ FoodShare 是一个专为美食爱好者打造的综合性美食分享与交流�
 
 ## 快速启动
 
-1. 将项目文件夹放置于 F 盘根目录下（即 `F:\foodshare`）。
-2. 使用 Qt Creator 或 Visual Studio Code 打开项目。
-3. 构建并运行项目，开始体验 FoodShare 平台。
+1. 将项目文件夹放置于 F 盘根目录下。
+2. 使用 Qt Creator  打开项目。
+3. 构建并运行项目。
 
 FoodShare —— 一份简单的Qt程序
